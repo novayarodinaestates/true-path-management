@@ -295,9 +295,11 @@
   .band-graphite .prole{color:var(--on-dark-mute)}
 
   /* ---------- Bio ---------- */
-  .bio-card{margin-top:38px;display:grid;grid-template-columns:100px 1fr;gap:clamp(28px,4vw,52px);
+  .bio-card{margin-top:38px;display:grid;grid-template-columns:84px 1fr;gap:clamp(20px,2.6vw,34px);
             align-items:start}
-  .bio-avatar{width:100%;aspect-ratio:1;object-fit:cover}
+  .bio-avatar{width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:center 20%;
+              border-radius:50%;border:1px solid var(--line-dark);
+              box-shadow:0 6px 22px rgba(0,0,0,.35)}
   .bio-name{font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:-.015em;
             line-height:1.15;color:var(--on-dark)}
   .bio-role{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
@@ -371,7 +373,7 @@
     .levels{grid-template-columns:1fr}
     .impact-grid{grid-template-columns:1fr}
     .foot-in{grid-template-columns:1fr 1fr}
-    .bio-card{grid-template-columns:100px 1fr}
+    .bio-card{grid-template-columns:84px 1fr}
   }
   @media (max-width:820px){
     .tabs-nav{position:fixed;inset:64px 0 auto;background:var(--navy);flex-direction:column;
@@ -386,7 +388,7 @@
     .connect-row{grid-template-columns:1fr}
     .foot-in{grid-template-columns:1fr}
     .bio-card{grid-template-columns:1fr}
-    .bio-avatar{max-width:100px}
+    .bio-avatar{max-width:84px}
     .mq-prev{left:0}.mq-next{right:0}
     .fin-wrap{flex-direction:column;align-items:flex-start;text-align:left}
   }
@@ -401,6 +403,25 @@
     .gs-prev{left:2px}.gs-next{right:2px}
     .tabbtn{padding:12px 14px;font-size:10.5px}
   }
+
+  /* ---------- Hero corner brackets + side rails ---------- */
+  .hero-bracket{position:absolute;width:clamp(30px,4vw,60px);height:clamp(30px,4vw,60px);
+                border:1px solid rgba(78,157,255,.4);pointer-events:none;z-index:3}
+  .hb-tl{top:clamp(20px,3vw,38px);left:clamp(20px,3vw,38px);border-right:0;border-bottom:0}
+  .hb-tr{top:clamp(20px,3vw,38px);right:clamp(20px,3vw,38px);border-left:0;border-bottom:0}
+  .hb-bl{bottom:clamp(20px,3vw,38px);left:clamp(20px,3vw,38px);border-right:0;border-top:0}
+  .hb-br{bottom:clamp(20px,3vw,38px);right:clamp(20px,3vw,38px);border-left:0;border-top:0}
+  .hero-bracket::after{content:"";position:absolute;width:5px;height:5px;background:var(--accent-light);
+                       opacity:.75;box-shadow:0 0 8px rgba(78,157,255,.8)}
+  .hb-tl::after{top:-3px;left:-3px}   .hb-tr::after{top:-3px;right:-3px}
+  .hb-bl::after{bottom:-3px;left:-3px} .hb-br::after{bottom:-3px;right:-3px}
+  .hero-rail{position:absolute;top:50%;writing-mode:vertical-rl;white-space:nowrap;pointer-events:none;z-index:3;
+             font-size:10px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+             color:var(--on-dark-mute);opacity:.5}
+  .hr-l{left:clamp(24px,3.4vw,44px);transform:translateY(-50%) rotate(180deg)}
+  .hr-r{right:clamp(24px,3.4vw,44px);transform:translateY(-50%)}
+  @media (max-width:1100px){.hero-rail{display:none}}
+  @media (max-width:640px){.hero-bracket{width:24px;height:24px}}
 
   /* ---------- Athlete Management tag: live signal ---------- */
   .reptag{position:relative;overflow:hidden;background:rgba(78,157,255,.07);
@@ -518,6 +539,12 @@
 
 <!-- ============ HERO — NAVY ============ -->
 <section id="home" class="hero">
+  <span class="hero-bracket hb-tl" aria-hidden="true"></span>
+  <span class="hero-bracket hb-tr" aria-hidden="true"></span>
+  <span class="hero-bracket hb-bl" aria-hidden="true"></span>
+  <span class="hero-bracket hb-br" aria-hidden="true"></span>
+  <span class="hero-rail hr-l" aria-hidden="true">@TruePathMgmt</span>
+  <span class="hero-rail hr-r" aria-hidden="true">Off-field representation</span>
   <div class="wrap hero-in">
     <div class="hero-center">
       <img class="hero-logo" src="images/49c34cde-c533-43f5-a181-22f49176719c.png?v=3" alt="True Path Management" width="1536" height="1024" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='images/logo-full.png'">
