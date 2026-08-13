@@ -119,10 +119,8 @@
   .track{display:flex;gap:16px;transition:transform .6s var(--ease);will-change:transform}
   .pcard{flex:0 0 auto;width:clamp(160px,17vw,216px)}
   .pcard-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--navy-soft)}
-  .pphoto{width:100%;height:100%;object-fit:cover;
-          filter:grayscale(1) contrast(1.14) brightness(.86);
-          transition:filter .55s var(--ease),transform .55s var(--ease)}
-  .pcard:hover .pphoto,.pcard:focus-within .pphoto{filter:grayscale(0) contrast(1.04) brightness(.98);transform:scale(1.035)}
+  .pphoto{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
+  .pcard:hover .pphoto,.pcard:focus-within .pphoto{transform:scale(1.04)}
   .pnum{position:absolute;top:12px;left:12px;font-size:11px;font-weight:600;letter-spacing:.16em;
         color:var(--on-dark);opacity:.65;mix-blend-mode:difference}
   .pcard-meta{padding-top:12px;display:flex;flex-direction:column;gap:2px;text-align:left}
@@ -171,25 +169,25 @@
   /* ---------- Gallery ---------- */
   .gal-intro{color:var(--slate);max-width:60ch;margin-top:16px;line-height:1.72}
   .gs{margin-top:34px;position:relative}
-  .gs-viewport{overflow:hidden;background:var(--navy);border:1px solid var(--line-light)}
-  .gs-track{display:flex;transition:transform .65s var(--ease);will-change:transform}
-  .gs-slide{flex:0 0 100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-            padding:24px;min-height:clamp(320px,52vh,560px)}
-  /* Images letterbox at their own proportions — never cropped */
-  .gal-item img{max-width:100%;max-height:clamp(260px,44vh,470px);width:auto;height:auto;
-                object-fit:contain;cursor:zoom-in;
-                filter:grayscale(1) contrast(1.12) brightness(.9);
-                transition:filter .55s var(--ease)}
-  .gal-item:hover img,.gal-item:focus-within img{filter:grayscale(0) contrast(1.04) brightness(1)}
-  .gal-cap{margin-top:16px;text-align:center;font-size:.86rem;color:var(--on-dark-mute);line-height:1.5}
+  .gs-viewport{overflow:hidden}
+  .gs-track{display:flex;gap:16px;transition:transform .65s var(--ease);will-change:transform}
+  /* Three photos per view; each letterboxes at its own proportions — never cropped */
+  .gal-item{flex:0 0 calc((100% - 32px)/3);display:grid;
+            grid-template-rows:clamp(200px,24vw,300px) auto;gap:12px;
+            background:var(--navy);border:1px solid var(--line-light);padding:14px;
+            transition:border-color .3s var(--ease)}
+  .gal-item:hover{border-color:var(--brass)}
+  .gal-item img{place-self:center;max-width:100%;max-height:100%;width:auto;height:auto;
+                object-fit:contain;cursor:zoom-in}
+  .gal-cap{text-align:center;font-size:.82rem;color:var(--on-dark-mute);line-height:1.5}
   .gal-cap b{display:block;font-family:var(--display);font-weight:400;font-size:1.06rem;
              color:var(--on-dark);letter-spacing:-.01em;margin-bottom:2px}
-  .gs-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  .gs-btn{position:absolute;top:calc(clamp(200px,24vw,300px)/2 + 14px);transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
           border:1px solid var(--line-dark);background:rgba(14,27,46,.85);color:var(--on-dark);
           display:grid;place-items:center;cursor:pointer;z-index:3;transition:all .25s var(--ease)}
   .gs-btn:hover{background:var(--brass-light);color:var(--navy);border-color:var(--brass-light)}
   .gs-btn svg{width:16px;height:16px}
-  .gs-prev{left:14px}.gs-next{right:14px}
+  .gs-prev{left:-16px}.gs-next{right:-16px}
   .gs-bar{margin-top:14px;height:2px;background:var(--line-light);position:relative;overflow:hidden}
   .gs-fill{position:absolute;left:0;top:0;bottom:0;background:var(--brass);width:0;transition:width .5s var(--ease)}
   .gs-dots{margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
@@ -289,10 +287,7 @@
   /* ---------- Bio ---------- */
   .bio-card{margin-top:38px;display:grid;grid-template-columns:230px 1fr;gap:clamp(28px,4vw,52px);
             align-items:start}
-  .bio-avatar{width:100%;aspect-ratio:1;object-fit:cover;
-              filter:grayscale(1) contrast(1.06) brightness(.96);
-              transition:filter .55s var(--ease)}
-  .bio-card:hover .bio-avatar{filter:grayscale(0) contrast(1.02) brightness(1)}
+  .bio-avatar{width:100%;aspect-ratio:1;object-fit:cover}
   .bio-name{font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:-.015em;
             line-height:1.15;color:var(--on-dark)}
   .bio-role{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
@@ -352,11 +347,6 @@
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
     outline:2px solid var(--brass);outline-offset:3px}
 
-  /* ---------- Touch: show photos in colour (no hover available) ---------- */
-  @media (hover:none){
-    .pphoto,.gal-item img,.bio-avatar{filter:grayscale(0) contrast(1.02) brightness(1)}
-  }
-
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.01ms !important;transition-duration:.01ms !important}
@@ -389,10 +379,15 @@
     .mq-prev{left:0}.mq-next{right:0}
     .fin-wrap{flex-direction:column;align-items:flex-start;text-align:left}
   }
+  @media (max-width:900px){
+    .gal-item{flex:0 0 calc((100% - 16px)/2)}
+  }
+  @media (max-width:600px){
+    .gal-item{flex:0 0 100%}
+  }
   @media (max-width:520px){
     .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-    .gs-slide{padding:14px}
-    .gs-prev{left:6px}.gs-next{right:6px}
+    .gs-prev{left:2px}.gs-next{right:2px}
     .tabbtn{padding:12px 14px;font-size:10.5px}
   }
 </style></head><body>
@@ -843,52 +838,108 @@
     rises.forEach(function(el){obs.observe(el)});
   } else { rises.forEach(function(el){el.classList.add("in")}) }
 
-  /* ---- Hero athlete marquee ---- */
+  /* ---- Hero athlete strip: flows on its own, arrows take over ---- */
   (function(){
     var track=$("#mqTrack"); if(!track) return;
     var cards=$$(".pcard",track); if(!cards.length) return;
-    var idx=0;
-    function perView(){
-      var w=track.parentElement.clientWidth, cw=cards[0].offsetWidth+16;
-      return Math.max(1,Math.floor(w/cw));
-    }
+    var wrap=track.closest(".hero-marquee");
+    var DUR=3000, idx=0, timer=null;
+    var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function step(){return cards[0].offsetWidth+16}
+    function perView(){return Math.max(1,Math.floor(track.parentElement.clientWidth/step()))}
     function maxIdx(){return Math.max(0,cards.length-perView())}
+    function apply(){track.style.transform="translateX("+(-idx*step())+"px)"}
     function go(n){
-      idx=Math.min(Math.max(0,n),maxIdx());
-      var cw=cards[0].offsetWidth+16;
-      track.style.transform="translateX("+(-idx*cw)+"px)";
+      var m=maxIdx();
+      idx = n>m ? 0 : (n<0 ? m : n);   /* wrap both ways */
+      apply(); restart();
     }
+    function restart(){stop(); if(reduce||maxIdx()<1) return; timer=setInterval(function(){go(idx+1)},DUR)}
+    function stop(){if(timer){clearInterval(timer);timer=null}}
+
     var p=$("#mqPrev"), nx=$("#mqNext");
     if(p) p.addEventListener("click",function(){go(idx-1)});
     if(nx) nx.addEventListener("click",function(){go(idx+1)});
-    window.addEventListener("resize",function(){go(idx)},{passive:true});
-    go(0);
+    if(wrap){
+      wrap.addEventListener("mouseenter",stop);
+      wrap.addEventListener("mouseleave",restart);
+      wrap.addEventListener("focusin",stop);
+      wrap.addEventListener("focusout",restart);
+    }
+    document.addEventListener("visibilitychange",function(){document.hidden?stop():restart()});
+    window.addEventListener("resize",function(){if(idx>maxIdx())idx=maxIdx();apply()},{passive:true});
+    apply(); restart();
   })();
 
-  /* ---- Gallery slideshow ---- */
+  /* ---- Clients & Founder carousel: 3 up, autoplays, pauses on hover ---- */
   (function(){
     var track=$("#gsTrack"); if(!track) return;
-    var slides=$$(".gs-slide",track); if(!slides.length) return;
-    var dots=$("#gsDots"), fill=$("#gsFill"), i=0;
+    var slides=$$(".gal-item",track); if(!slides.length) return;
+    var root=track.closest(".gs"), dots=$("#gsDots"), fill=$("#gsFill");
+    var DUR=4500, page=0, pages=1, timer=null, raf=null, t0=0;
+    var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    slides.forEach(function(_,n){
-      var b=document.createElement("button");
-      b.type="button";
-      b.setAttribute("aria-label","Photo "+(n+1)+" of "+slides.length);
-      b.addEventListener("click",function(){go(n)});
-      if(dots) dots.appendChild(b);
-    });
-
-    function go(n){
-      i=(n+slides.length)%slides.length;
-      track.style.transform="translateX("+(-i*100)+"%)";
-      if(dots) $$("button",dots).forEach(function(b,k){b.classList.toggle("on",k===i)});
-      if(fill) fill.style.width=((i+1)/slides.length*100)+"%";
+    function perView(){var w=window.innerWidth; return w<=600?1:(w<=900?2:3)}
+    function buildDots(){
+      if(!dots) return;
+      dots.innerHTML="";
+      for(var k=0;k<pages;k++){
+        (function(k){
+          var b=document.createElement("button");
+          b.type="button";
+          b.setAttribute("aria-label","Go to page "+(k+1)+" of "+pages);
+          if(k===page) b.className="on";
+          b.addEventListener("click",function(){go(k)});
+          dots.appendChild(b);
+        })(k);
+      }
     }
+    function measure(){
+      pages=Math.max(1,Math.ceil(slides.length/perView()));
+      if(page>pages-1) page=pages-1;
+      buildDots(); apply();
+    }
+    function apply(){
+      var n=perView(), gap=parseFloat(getComputedStyle(track).gap)||0;
+      var stepPx=(slides[0].getBoundingClientRect().width+gap)*n;
+      var max=track.scrollWidth-track.parentElement.clientWidth;
+      track.style.transform="translateX(-"+Math.min(page*stepPx,Math.max(max,0))+"px)";
+      if(dots) $$("button",dots).forEach(function(d,k){d.classList.toggle("on",k===page)});
+    }
+    function go(pnew){page=(pnew+pages)%pages; apply(); restart()}
+    function tick(ts){
+      if(!t0) t0=ts;
+      var pct=Math.min((ts-t0)/DUR,1);
+      if(fill) fill.style.width=(pct*100)+"%";
+      if(pct<1) raf=requestAnimationFrame(tick);
+    }
+    function restart(){
+      stop(); if(reduce||pages<2) return;
+      t0=0; raf=requestAnimationFrame(tick);
+      timer=setTimeout(function(){go(page+1)},DUR);
+    }
+    function stop(){clearTimeout(timer); cancelAnimationFrame(raf); timer=null}
+
     var p=$("#gsPrev"), nx=$("#gsNext");
-    if(p) p.addEventListener("click",function(){go(i-1)});
-    if(nx) nx.addEventListener("click",function(){go(i+1)});
-    go(0);
+    if(p) p.addEventListener("click",function(){go(page-1)});
+    if(nx) nx.addEventListener("click",function(){go(page+1)});
+    if(root){
+      root.addEventListener("mouseenter",function(){stop(); if(fill) fill.style.width="0"});
+      root.addEventListener("mouseleave",restart);
+    }
+    var sx=null;
+    track.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;stop()},{passive:true});
+    track.addEventListener("touchend",function(e){
+      if(sx===null){restart();return}
+      var dx=e.changedTouches[0].clientX-sx;
+      if(Math.abs(dx)>45) go(dx<0?page+1:page-1); else restart();
+      sx=null;
+    },{passive:true});
+    document.addEventListener("visibilitychange",function(){document.hidden?stop():restart()});
+    var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(measure,150)},{passive:true});
+    window.addEventListener("load",measure);
+    measure(); restart();
   })();
 
   /* ---- Lightbox ---- */
