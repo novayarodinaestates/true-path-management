@@ -287,7 +287,7 @@
   .band-graphite .prole{color:var(--on-dark-mute)}
 
   /* ---------- Bio ---------- */
-  .bio-card{margin-top:38px;display:grid;grid-template-columns:230px 1fr;gap:clamp(28px,4vw,52px);
+  .bio-card{margin-top:38px;display:grid;grid-template-columns:150px 1fr;gap:clamp(28px,4vw,52px);
             align-items:start}
   .bio-avatar{width:100%;aspect-ratio:1;object-fit:cover}
   .bio-name{font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:-.015em;
@@ -363,7 +363,7 @@
     .levels{grid-template-columns:1fr}
     .impact-grid{grid-template-columns:1fr}
     .foot-in{grid-template-columns:1fr 1fr}
-    .bio-card{grid-template-columns:170px 1fr}
+    .bio-card{grid-template-columns:150px 1fr}
   }
   @media (max-width:820px){
     .tabs-nav{position:fixed;inset:64px 0 auto;background:var(--navy);flex-direction:column;
@@ -378,7 +378,7 @@
     .connect-row{grid-template-columns:1fr}
     .foot-in{grid-template-columns:1fr}
     .bio-card{grid-template-columns:1fr}
-    .bio-avatar{max-width:190px}
+    .bio-avatar{max-width:150px}
     .mq-prev{left:0}.mq-next{right:0}
     .fin-wrap{flex-direction:column;align-items:flex-start;text-align:left}
   }
@@ -392,6 +392,21 @@
     .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
     .gs-prev{left:2px}.gs-next{right:2px}
     .tabbtn{padding:12px 14px;font-size:10.5px}
+  }
+
+  /* ---------- Touch ergonomics: 44px minimum tap targets ---------- */
+  @media (max-width:820px){
+    nav .nav-in > a{display:flex;align-items:center;min-height:44px}
+    .nav-toggle{min-width:44px;min-height:44px;align-items:center;justify-content:center;padding:0}
+    .mq-btn,.gs-btn,.tstc-btn{width:44px;height:44px}
+    .soc-ico{width:44px;height:44px}
+    .soc-ico svg{width:17px;height:17px}
+    .prole{font-size:11px}
+    .cinfo a{padding:20px}
+    .pnum{font-size:12px}
+    /* dots stay visually small but get a finger-sized hit area */
+    .gs-dots button,.tstc-dots button{box-sizing:content-box;padding:9px;background-clip:content-box}
+    .gs-dots,.tstc-dots{gap:0}
   }
 </style></head><body>
 
@@ -453,7 +468,7 @@
       <p class="mlead">We manage the off-field lives, brands, and businesses of elite athletes. True Path Management is dedicated to building, protecting, and scaling legacies both during and long after our clients&rsquo; competitive careers.</p>
       <div class="mission-body">
         <p>In the collegiate space, we provide comprehensive representation and contract negotiations for NIL athletes, helping young players maximize their market value and secure premium brand deals. For our professional athletes in the NFL, we pivot strictly to comprehensive off-field business management.</p>
-        <p><strong>We do not negotiate NFL team contracts.</strong> Instead, we partner seamlessly with our clients&rsquo; certified contract agents to oversee their external brands, philanthropic foundations, youth camps, and daily lifestyle logistics outside the lines.</p>
+        <p><strong>We do not negotiate professional team contracts.</strong> Instead, we partner seamlessly with our clients&rsquo; certified contract agents to oversee their external brands, philanthropic foundations, youth camps, and daily lifestyle logistics outside the lines.</p>
       </div>
     </div>
 
@@ -607,7 +622,7 @@
       <div class="panel on" id="rep">
         <h3>Off-Field Management</h3>
         <p>We manage the off-field lives, brands, and businesses of elite athletes. For our professional clients, that means comprehensive business management outside the lines &mdash; external brands, philanthropic foundations, youth camps, appearances, and daily lifestyle logistics &mdash; so the athlete can focus on the game.</p>
-        <p><strong>Co-agent friendly.</strong> True Path Management does not negotiate NFL team contracts. We work directly alongside each athlete&rsquo;s certified contract agent &mdash; we are here to build and protect the player&rsquo;s brand, not to compete for their contract representation.</p>
+        <p><strong>Co-agent friendly.</strong> True Path Management does not negotiate professional team contracts. We work directly alongside each athlete&rsquo;s certified contract agent &mdash; we are here to build and protect the player&rsquo;s brand, not to compete for their contract representation.</p>
         <div class="brand-grid">
           <span class="brand-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.6 9.9 3.5a3.2 3.2 0 0 0-4.5 4.5l6.6 6.6 6.6-6.6a3.2 3.2 0 0 0-4.5-4.5z" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M6 15l3 3 3-2 3 2 3-3" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Off-Field Deals</span></span>
           <span class="brand-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5a1.5 1.5 0 0 0 1.5 1.5H8l6 4V4L8 8H5.5A1.5 1.5 0 0 0 4 9.5z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/><path d="M17.5 8.5a5 5 0 0 1 0 7M20 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg><span>Social Media Marketing</span></span>
@@ -689,7 +704,7 @@
     </div>
 
     <div class="coagent rise">
-      <p><strong>Co-agent friendly.</strong> True Path Management does not negotiate NFL team contracts. We work directly alongside each athlete&rsquo;s certified contract agent &mdash; we are here to build and protect the player&rsquo;s brand, not to compete for their contract representation.</p>
+      <p><strong>Co-agent friendly.</strong> True Path Management does not negotiate professional team contracts. We work directly alongside each athlete&rsquo;s certified contract agent &mdash; we are here to build and protect the player&rsquo;s brand, not to compete for their contract representation.</p>
     </div>
   </div>
 </section>
@@ -847,7 +862,7 @@
     var originals=$$(".pcard",track); if(!originals.length) return;
     var wrap=track.closest(".hero-marquee");
     var SPEED=26;           /* px per second — slow drift */
-    var DIR=1;              /* 1 = travels left-to-right, -1 = right-to-left */
+    var DIR=-1;             /* -1 = travels right-to-left, 1 = left-to-right */
     var x=0, half=0, last=0, raf=null, paused=false;
     var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
