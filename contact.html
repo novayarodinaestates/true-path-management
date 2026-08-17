@@ -13,6 +13,7 @@
 <link rel="preload" as="image" href="images/49c34cde-c533-43f5-a181-22f49176719c.png?v=3">
 <title>Contact the Team — True Path Management</title><meta name="theme-color" content="#070E1C">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.web3forms.com">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -23,6 +24,7 @@
     --ink:#0B1524; --slate:#5A6577; --slate-soft:#868FA0;
     --on-dark:#F2EFE8; --on-dark-mute:#A9B3BF;
     --line-dark:rgba(242,239,232,.14); --line-light:#E0DACE; --line-gray:#CFD3D6;
+    --danger:#A6321B;
     --display:"Newsreader",Georgia,serif;
     --sans:"DM Sans",system-ui,-apple-system,sans-serif;
     --maxw:1200px;
@@ -100,15 +102,22 @@
   textarea{min-height:140px;resize:vertical}
   select{appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A6577' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
           background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px}
+  /* field-level invalid state */
+  input.invalid,select.invalid,textarea.invalid{border-color:var(--danger)}
   .fsubmit{width:100%;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.16em;
            text-transform:uppercase;color:var(--cream);background:var(--navy);border:0;border-radius:2px;
            padding:16px 24px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
            gap:10px;transition:background .25s var(--ease)}
   .fsubmit:hover{background:var(--accent)}
+  .fsubmit[disabled]{opacity:.62;cursor:progress;background:var(--navy)}
+  /* honeypot — hidden from humans, tempting to bots */
+  .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
   .fnote{margin-top:16px;font-size:.86rem;color:var(--slate);text-align:center}
   .fok{margin-top:18px;padding:16px 18px;border-left:2px solid var(--accent);background:var(--cream);
        font-size:.92rem;color:var(--ink);display:none}
   .fok.on{display:block}
+  .fok.err{border-left-color:var(--danger)}
+  .fok a{color:var(--accent)}
 
   /* ---------- Footer ---------- */
   footer{background:var(--navy-deep);color:var(--on-dark);padding:clamp(56px,7vw,88px) 0 0}
@@ -205,19 +214,26 @@
     </div>
 
     <div class="form-card">
-      <form id="cform" novalidate>
+      <form id="cform" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!-- Web3Forms configuration -->
+        <input type="hidden" name="access_key" value="61705c38-6fea-4aa4-8cea-bafd617a9c4a">
+        <input type="hidden" name="subject" value="New enquiry from truepathmgmt.org">
+        <input type="hidden" name="from_name" value="True Path Management Website">
+        <!-- honeypot: bots fill this, humans never see it -->
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
         <div class="frow2">
-          <div class="frow"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Full name" required></div>
-          <div class="frow"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="(000) 000-0000"></div>
+          <div class="frow"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Full name" autocomplete="name" required></div>
+          <div class="frow"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="(000) 000-0000" autocomplete="tel"></div>
         </div>
-        <div class="frow"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@email.com" required></div>
+        <div class="frow"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required></div>
         <div class="frow"><label for="f-role">You are</label><select id="f-role" name="role">
           <option>Athlete</option><option>Family / Guardian</option><option>Brand / Partner</option><option>Media</option><option>Other</option>
         </select></div>
         <div class="frow"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Tell us about your goals..." required></textarea></div>
-        <button class="fsubmit" type="submit">Send message <span aria-hidden="true">&rarr;</span></button>
+        <button class="fsubmit" id="fsubmit" type="submit">Send message <span aria-hidden="true">&rarr;</span></button>
         <p class="fnote">Prefer email? Reach us directly at info@truepathmgmt.org.</p>
-        <div class="fok" id="fok">Thanks &mdash; your message is ready to send from your email app. We&rsquo;ll be in touch shortly.</div>
+        <div class="fok" id="fok" role="status" aria-live="polite"></div>
       </form>
     </div>
   </div>
@@ -270,29 +286,74 @@
     });
   }
 
-  /* ---- Contact form -> mailto handoff ---- */
+  /* ---- Contact form -> Web3Forms ---- */
   var form=$("#cform");
   if(form){
+    var btn=$("#fsubmit"), ok=$("#fok");
+    var btnHTML=btn?btn.innerHTML:"";
+    var EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    function say(msg,isErr){
+      if(!ok) return;
+      ok.innerHTML=msg;
+      ok.classList.add("on");
+      ok.classList.toggle("err",!!isErr);
+    }
+    function clearInvalid(){
+      Array.prototype.forEach.call(form.querySelectorAll(".invalid"),function(f){
+        f.classList.remove("invalid");
+      });
+    }
+
     form.addEventListener("submit",function(e){
       e.preventDefault();
+      clearInvalid();
+
       var name=$("#f-name"), email=$("#f-email"), msg=$("#f-msg");
-      var missing=[name,email,msg].filter(function(f){return !f.value.trim()});
-      if(missing.length){ missing[0].focus(); return; }
 
-      var body=[
-        "Name: "+name.value.trim(),
-        "Email: "+email.value.trim(),
-        "Phone: "+($("#f-phone").value.trim()||"—"),
-        "You are: "+$("#f-role").value,
-        "",
-        msg.value.trim()
-      ].join("\n");
+      /* validate: required fields first, then email shape */
+      var bad=[name,email,msg].filter(function(f){return !f.value.trim()});
+      if(!bad.length && !EMAIL.test(email.value.trim())) bad=[email];
+      if(bad.length){
+        bad.forEach(function(f){f.classList.add("invalid")});
+        bad[0].focus();
+        say(bad[0]===email && email.value.trim()
+              ? "That email address doesn&rsquo;t look right &mdash; mind checking it?"
+              : "Please fill in your name, email, and a short message.", true);
+        return;
+      }
 
-      window.location.href="mailto:info@truepathmgmt.org"
-        +"?subject="+encodeURIComponent("Website enquiry — "+name.value.trim())
-        +"&body="+encodeURIComponent(body);
+      if(btn){ btn.disabled=true; btn.textContent="Sending\u2026"; }
+      say("Sending your message\u2026", false);
 
-      var ok=$("#fok"); if(ok) ok.classList.add("on");
+      fetch(form.action,{
+        method:"POST",
+        headers:{"Accept":"application/json"},
+        body:new FormData(form)
+      })
+      .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,data:d} }) })
+      .then(function(res){
+        if(res.ok && res.data && res.data.success){
+          form.reset();
+          say("Thanks &mdash; your message is on its way. Our team will be in touch shortly.", false);
+          if(btn){ btn.style.display="none"; }
+        }else{
+          throw new Error((res.data && res.data.message) || "Submission failed");
+        }
+      })
+      .catch(function(){
+        say("Something went wrong sending that. Please email us directly at "+
+            "<a href=\"mailto:info@truepathmgmt.org\">info@truepathmgmt.org</a> "+
+            "or call 919-417-7560.", true);
+      })
+      .then(function(){
+        if(btn && btn.style.display!=="none"){ btn.disabled=false; btn.innerHTML=btnHTML; }
+      });
+    });
+
+    /* clear the error styling as soon as they start fixing it */
+    form.addEventListener("input",function(e){
+      if(e.target.classList) e.target.classList.remove("invalid");
     });
   }
 })();
