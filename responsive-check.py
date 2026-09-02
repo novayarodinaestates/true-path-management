@@ -19,7 +19,7 @@ import os, sys
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PAGES = ["index.html", "contact.html"]
+PAGES = ["index.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
 
 DEVICES = [
     (320, 568, "iPhone SE (smallest)"),
@@ -68,6 +68,8 @@ def audit(pg, w, label, page):
             const r = el.getBoundingClientRect();
             if (r.width === 0 || r.height === 0) return false;
             if (el.closest('.foot-list')) return false;   /* inline footer links are fine */
+            /* WCAG 2.2 SC 2.5.8 exempts inline targets inside a block of text */
+            if (el.closest('.doc p, .doc li, .faq-a')) return false;
             return r.height < 24 || r.width < 24;
         }).slice(0,5).map(el => (el.tagName.toLowerCase()+'.'+(el.className||'').toString().trim().split(/\\s+/)[0]) + ' ' + Math.round(el.getBoundingClientRect().width) + 'x' + Math.round(el.getBoundingClientRect().height))""")
         for s in small:

@@ -5,6 +5,10 @@ Static site. No build step, no dependencies.
 ```
 index.html          landing page
 contact.html        contact form
+faq.html            frequently asked questions
+privacy.html        privacy policy
+terms.html          terms of use
+legal.css           shared styles for faq / privacy / terms
 images/
   logo-mark.webp    nav logo + favicon (.png kept as fallback)
   logo-full.webp    hero + footer logo
@@ -73,6 +77,28 @@ and height stop the page from jumping around while images load.
 In `index.html`, find the `#testimonials` section. Each card is one `<figure>`.
 Replace the quote, name, initials, and role — then delete the word `todo` from
 `class="tst rise todo"` so the card stops rendering greyed out.
+
+## The standalone pages
+
+`faq.html`, `privacy.html`, and `terms.html` share `legal.css`, which is a copy of
+the site chrome (nav, footer, tokens) plus the prose and accordion styles. They are
+linked from the Legal column in the footer of every page.
+
+Two things to know if you edit them:
+
+- The footer markup is duplicated in `index.html`, `contact.html`, and mirrored in
+  `legal.css`. Change the footer in one place and change it in all of them, including
+  the `.foot-in` grid column count if you add or remove a column.
+- The FAQ accordion is native `<details>`/`<summary>` — no JavaScript. Adding a
+  question means copying one `<details class="faq">` block.
+
+`faq.html` also carries FAQPage structured data in a `<script type="application/ld+json">`
+block at the bottom. If you change the first four answers materially, update it to match
+or remove it — mismatched structured data is worse than none.
+
+**Before launch, two answers in `faq.html` need confirming.** They are marked with
+`REPLACE` comments: the fee question, and the certified-contract-advisor question.
+Both are written conservatively but neither has been verified.
 
 ## Checking the site before you deploy
 
