@@ -420,7 +420,10 @@
   }
   role.addEventListener("change",apply);
   try{
-    if(new URLSearchParams(location.search).get("for")==="brand") role.value="Brand / Partner";
+    /* deep links from the homepage CTAs: ?for=athlete and ?for=brand */
+    var want=new URLSearchParams(location.search).get("for");
+    var map={brand:"Brand / Partner", athlete:"Athlete", family:"Family / Guardian", media:"Media"};
+    if(want && map[want]) role.value=map[want];
   }catch(e){}
   apply();
 })();

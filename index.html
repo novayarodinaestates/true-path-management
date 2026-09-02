@@ -557,6 +557,24 @@
     font-size:.95rem;color:var(--ink)}
   .work-r strong{color:var(--accent)}
 
+  /* ---- recurring conversion band (review #9) ---- */
+  .ctaband{margin-top:clamp(44px,5vw,64px);padding-top:clamp(30px,3.5vw,42px);
+    border-top:1px solid var(--line-light);text-align:center}
+  .cta-line{margin:0 0 20px;font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);
+    font-weight:400;color:var(--ink)}
+  .cta-pair{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cta-btn{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;text-decoration:none;padding:16px 26px;
+    transition:background .25s var(--ease),color .25s var(--ease)}
+  .cta-btn--a{background:var(--ink);color:#fff}
+  .cta-btn--a:hover,.cta-btn--a:focus-visible{background:var(--accent)}
+  .cta-btn--b{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .cta-btn--b:hover,.cta-btn--b:focus-visible{background:var(--ink);color:#fff}
+  @media (max-width:520px){
+    .cta-pair{flex-direction:column}
+    .cta-btn{width:100%}
+  }
+
   /* ---- partners, set in our own type (review #4) ---- */
   .pt-lead{margin:20px 0 0;max-width:58ch;font-size:1.02rem;line-height:1.65;color:var(--slate)}
   .ptnames{list-style:none;margin:34px 0 0;padding:0;
@@ -875,6 +893,14 @@
       </article>
 
     </div>
+
+    <div class="ctaband rise">
+      <p class="cta-line">Two ways in — pick the one that fits.</p>
+      <div class="cta-pair">
+        <a class="cta-btn cta-btn--a" href="contact.html?for=athlete">Athletes &mdash; Start Your Path</a>
+        <a class="cta-btn cta-btn--b" href="contact.html?for=brand">Brands &mdash; Partner With Our Athletes</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -944,6 +970,14 @@
         <button class="tstc-btn" id="tstcPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="tstc-dots" id="tstcDots"></div>
         <button class="tstc-btn" id="tstcNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="ctaband rise">
+      <p class="cta-line">Two ways in — pick the one that fits.</p>
+      <div class="cta-pair">
+        <a class="cta-btn cta-btn--a" href="contact.html?for=athlete">Athletes &mdash; Start Your Path</a>
+        <a class="cta-btn cta-btn--b" href="contact.html?for=brand">Brands &mdash; Partner With Our Athletes</a>
       </div>
     </div>
   </div>
