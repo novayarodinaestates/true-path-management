@@ -113,6 +113,8 @@
   /* honeypot — hidden from humans, tempting to bots */
   .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
   .fnote{margin-top:16px;font-size:.86rem;color:var(--slate);text-align:center}
+  .cond{display:none}
+  .cond.on{display:block}
   .fok{margin-top:18px;padding:16px 18px;border-left:2px solid var(--accent);background:var(--cream);
        font-size:.92rem;color:var(--ink);display:none}
   .fok.on{display:block}
@@ -186,6 +188,7 @@
     <a class="tab-link" href="index.html#home">Home</a>
     <a class="tab-link" href="index.html#bio">About</a>
     <a class="tab-link" href="index.html#athletes">Athletes</a>
+    <a class="tab-link" href="index.html#work">The Work</a>
     <a class="tab-link" href="index.html#services">Services</a>
     <a class="tab-link" href="index.html#testimonials">Testimonials</a>
     <a class="tab-link tab-cta-m active" href="contact.html">Contact the team</a>
@@ -230,6 +233,46 @@
         <div class="frow"><label for="f-role">You are</label><select id="f-role" name="role">
           <option>Athlete</option><option>Family / Guardian</option><option>Brand / Partner</option><option>Media</option><option>Other</option>
         </select></div>
+
+        <!-- athlete-only fields -->
+        <div class="cond" id="condAthlete">
+          <div class="frow2">
+            <div class="frow"><label for="f-sport">Sport</label><input id="f-sport" name="sport" type="text" placeholder="Football, basketball..."></div>
+            <div class="frow"><label for="f-level">Level</label><select id="f-level" name="level">
+              <option>Professional</option><option>College</option><option>High school</option>
+            </select></div>
+          </div>
+          <div class="frow2">
+            <div class="frow"><label for="f-team">Current team or school</label><input id="f-team" name="team" type="text" placeholder="Team or school"></div>
+            <div class="frow"><label for="f-ig">Instagram</label><input id="f-ig" name="instagram" type="text" placeholder="@handle"></div>
+          </div>
+          <div class="frow"><label for="f-need">What support are you looking for?</label><select id="f-need" name="support">
+            <option>Off-field management</option><option>NIL representation</option><option>Brand partnerships</option>
+            <option>Camps or foundation</option><option>Social strategy</option><option>Not sure yet</option>
+          </select></div>
+        </div>
+
+        <!-- brand-only fields -->
+        <div class="cond" id="condBrand">
+          <div class="frow2">
+            <div class="frow"><label for="f-company">Company</label><input id="f-company" name="company" type="text" placeholder="Company name"></div>
+            <div class="frow"><label for="f-campaign">Campaign type</label><select id="f-campaign" name="campaign">
+              <option>Brand partnership</option><option>Appearance</option><option>Social campaign</option>
+              <option>Community activation</option><option>Sponsorship</option><option>Other</option>
+            </select></div>
+          </div>
+          <div class="frow2">
+            <div class="frow"><label for="f-budget">Budget range</label><select id="f-budget" name="budget">
+              <option>Under $10k</option><option>$10k – $25k</option><option>$25k – $50k</option>
+              <option>$50k – $100k</option><option>$100k+</option><option>Not yet defined</option>
+            </select></div>
+            <div class="frow"><label for="f-timeline">Timeline</label><select id="f-timeline" name="timeline">
+              <option>Within 30 days</option><option>1 – 3 months</option><option>3 – 6 months</option><option>Exploring</option>
+            </select></div>
+          </div>
+          <div class="frow"><label for="f-interest">Athlete or sport of interest</label><input id="f-interest" name="interest" type="text" placeholder="Athlete name, sport, or league"></div>
+        </div>
+
         <div class="frow"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Tell us about your goals..." required></textarea></div>
         <button class="fsubmit" id="fsubmit" type="submit">Send message <span aria-hidden="true">&rarr;</span></button>
         <p class="fnote">Prefer email? Reach us directly at info@truepathmgmt.org.</p>
@@ -356,6 +399,30 @@
       if(e.target.classList) e.target.classList.remove("invalid");
     });
   }
+})();
+
+/* show only the fields that match the visitor type (review #9) */
+(function(){
+  var role=document.getElementById("f-role");
+  if(!role) return;
+  var ath=document.getElementById("condAthlete"), brd=document.getElementById("condBrand");
+  function apply(){
+    var v=role.value;
+    var isAth=(v==="Athlete"||v==="Family / Guardian");
+    var isBrd=(v==="Brand / Partner");
+    ath.classList.toggle("on",isAth);
+    brd.classList.toggle("on",isBrd);
+    /* keep hidden fields out of the submitted email */
+    [ath,brd].forEach(function(box){
+      var off=!box.classList.contains("on");
+      box.querySelectorAll("input,select,textarea").forEach(function(el){el.disabled=off;});
+    });
+  }
+  role.addEventListener("change",apply);
+  try{
+    if(new URLSearchParams(location.search).get("for")==="brand") role.value="Brand / Partner";
+  }catch(e){}
+  apply();
 })();
 </script>
 </body></html>
