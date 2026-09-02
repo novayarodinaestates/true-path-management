@@ -557,6 +557,21 @@
     font-size:.95rem;color:var(--ink)}
   .work-r strong{color:var(--accent)}
 
+  /* ---- partners, set in our own type (review #4) ---- */
+  .pt-lead{margin:20px 0 0;max-width:58ch;font-size:1.02rem;line-height:1.65;color:var(--slate)}
+  .ptnames{list-style:none;margin:34px 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .ptname{display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--display);font-size:1.5rem;font-weight:500;line-height:1.22;
+    letter-spacing:-.015em;color:var(--pt-c,var(--ink));
+    padding:30px 22px;min-height:120px;
+    border-left:1px solid var(--line-light)}
+  .ptname:first-child{border-left:none}
+  .pt-t{display:block}
+  .pt-sub{color:var(--pt-c2,var(--slate))}
+  .pt-note{margin:26px 0 0;font-size:.86rem;color:var(--slate-soft)}
+  .pt-legal{margin:14px 0 0;max-width:76ch;font-size:.8rem;line-height:1.6;color:var(--slate-soft)}
+
   /* ---- testimonial group tag (review #6) ---- */
   .tst-tag{display:inline-block;margin-bottom:14px;font-family:var(--sans);font-size:10px;
     font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);
@@ -564,6 +579,16 @@
 
   @media (max-width:900px){
     .paths,.works{grid-template-columns:1fr;gap:16px}
+    .ptnames{grid-template-columns:repeat(2,1fr)}
+    .ptname{font-size:1.3rem;min-height:104px;padding:24px 18px}
+    .ptname:nth-child(odd){border-left:none}
+    .ptname:nth-child(n+3){border-top:1px solid var(--line-light)}
+  }
+  @media (max-width:420px){
+    .ptnames{grid-template-columns:1fr}
+    .ptname{font-size:1.35rem;min-height:0;padding:20px 12px;
+      border-left:none;border-top:1px solid var(--line-light)}
+    .ptname:first-child{border-top:none}
   }
   @media (max-width:560px){
     .hero-sub{font-size:.92rem}
@@ -850,6 +875,31 @@
       </article>
 
     </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS — CREAM ============ -->
+<!-- Named in our own typography, no logo files. Brand names are used to describe real
+     past engagements (nominative use); no marks are reproduced.
+     Colours: Cane's #D11920 (PMS 485 C) and Jersey Mike's #134A7C are published brand
+     values. HOW Water aqua #0B7C8A and Bear's red #B3271E are chosen for legibility on
+     cream, not taken from a brand guide - confirm and replace when you have the real
+     values. Change --pt-c (and --pt-c2 for a second tone) on the relevant <li>. -->
+<section id="partners" class="sec band-cream pad-tight">
+  <div class="wrap">
+    <p class="eyebrow rise">Partners</p>
+    <h2 class="sec-h rise">Brands our athletes have <span class="accent">partnered with</span></h2>
+    <p class="pt-lead rise">Our roster earns trust on the field. These are the companies that have trusted us off it.</p>
+
+    <ul class="ptnames rise">
+      <li class="ptname" style="--pt-c:#D11920"><span class="pt-t">Raising Cane&rsquo;s</span></li>
+      <li class="ptname" style="--pt-c:#134A7C"><span class="pt-t">Jersey Mike&rsquo;s</span></li>
+      <li class="ptname" style="--pt-c:#0B7C8A"><span class="pt-t">HOW Water</span></li>
+      <li class="ptname" style="--pt-c:#B3271E;--pt-c2:#5A6577"><span class="pt-t">Bear&rsquo;s <span class="pt-sub">Smokehouse BBQ</span></span></li>
+    </ul>
+
+    <p class="pt-note rise">Additional brand and community partners available on request.</p>
+    <p class="pt-legal">Brand names are the property of their respective owners and are referenced here to describe past engagements. No endorsement or affiliation is implied.</p>
   </div>
 </section>
 
