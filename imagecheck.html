@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Image check</title>
+<style>
+ body{font:15px/1.5 system-ui,sans-serif;margin:0;padding:28px;background:#f7f4ed;color:#0b1524}
+ h1{font-size:20px;margin:0 0 4px} p.sub{margin:0 0 20px;color:#5a6577}
+ .tot{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+ .tot b{padding:6px 12px;border-radius:3px;font-size:13px}
+ .okc{background:#dff0e4;color:#1c5e34}.badc{background:#fbdcda;color:#8c1d16}
+ ul{list-style:none;padding:0;margin:0}
+ li{display:flex;gap:10px;align-items:center;padding:7px 10px;border-bottom:1px solid #e0dace;font-size:13px}
+ li.bad{background:#fff3f2}
+ .tag{flex:0 0 46px;font-weight:700;font-size:11px;letter-spacing:.08em}
+ .ok .tag{color:#1c8a45}.bad .tag{color:#c0392b}
+ code{font-family:ui-monospace,Menlo,monospace}
+ .hint{margin-top:22px;padding:14px 16px;background:#fff;border:1px solid #e0dace;font-size:13px;color:#5a6577}
+</style></head><body>
+<h1>Image check</h1>
+<p class="sub">Loads every image the site references and reports what is missing. Delete this file once everything passes.</p>
+<div class="tot" id="tot"></div>
+<ul id="out"></ul>
+<div class="hint">A <b>MISSING</b> row means the file is not at that exact path on the server. Check for a
+different filename, a different folder, or different capitalisation. Names are case-sensitive.</div>
+<script>
+var PATHS=[
+ "images/gallery/01-panel.webp","images/gallery/02-school-visit.webp","images/gallery/03-radio-k104.webp",
+ "images/gallery/04-brand-event.webp","images/gallery/05-football-camp.webp","images/gallery/06-browns-camp.webp",
+ "images/gallery/07-conference-gw.webp","images/gallery/08-sinc-stage.webp","images/gallery/09-stadium.webp",
+ "images/gallery/10-youth-outreach.webp","images/gallery/11-bears-smokehouse.jpg","images/gallery/12-pinnock-camp.jpg",
+ "images/gallery/13-pinnock-camp-crowd.jpg","images/gallery/14-gainbridge.jpg","images/gallery/15-jersey-mikes.png",
+ "images/gallery/16-hurricanes.jpg","images/gallery/17-texans-camp.jpg","images/gallery/18-texans-camp-group.jpg",
+ "images/athletes/nyheim-hines.webp","images/athletes/brandon-codrington.webp","images/athletes/jordan-hall.webp",
+ "images/athletes/jason-pinnock.webp","images/athletes/jamarcus-ingram.webp","images/athletes/keaontay-ingram.webp",
+ "images/athletes/zavier-scott.webp","images/athletes/navonn-barrett.jpg","images/athletes/kaleb-brown.jpg",
+ "images/team/khalil-baker.png","images/team/taylor-wilson.png",
+ "images/founder/jamond-dubose-avatar.webp"
+];
+var out=document.getElementById("out"),ok=0,bad=0;
+function draw(){document.getElementById("tot").innerHTML=
+ '<b class="okc">'+ok+' found</b><b class="badc">'+bad+' missing</b>';}
+PATHS.forEach(function(p){
+ var li=document.createElement("li");
+ li.innerHTML='<span class="tag">...</span><code>'+p+'</code>';
+ out.appendChild(li);
+ var im=new Image();
+ im.onload=function(){ok++;li.className="ok";li.querySelector(".tag").textContent="OK";draw()};
+ im.onerror=function(){bad++;li.className="bad";li.querySelector(".tag").textContent="MISSING";
+   out.insertBefore(li,out.firstChild);draw()};
+ im.src=p+"?cb="+Date.now();
+});
+draw();
+</script></body></html>

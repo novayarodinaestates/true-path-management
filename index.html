@@ -124,7 +124,7 @@
              border:1px solid var(--line-light);border-bottom:0;
              transition:border-color .3s var(--ease)}
   .pcard:hover .pcard-img{border-color:var(--accent)}
-  .hero .pcard-img{border:0}
+  .hero .pcard-img{border-color:var(--line-dark)}
   .pphoto{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
   .pcard:hover .pphoto,.pcard:focus-within .pphoto{transform:scale(1.04)}
   .pcard-meta{padding-top:12px;display:flex;flex-direction:column;gap:2px;text-align:left}
@@ -591,9 +591,9 @@
   /* ---- partners, set in our own type (review #4) ---- */
   .pt-lead{margin:20px 0 0;max-width:58ch;font-size:1.02rem;line-height:1.65;color:var(--slate)}
   .ptnames{list-style:none;margin:34px 0 0;padding:0;
-    display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+    display:grid;grid-template-columns:repeat(6,1fr);gap:0}
   .ptname{display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:var(--display);font-size:clamp(1.12rem,1.55vw,1.42rem);font-weight:500;line-height:1.22;
+    font-family:var(--display);font-size:clamp(1.02rem,1.35vw,1.3rem);font-weight:500;line-height:1.22;
     letter-spacing:-.015em;color:var(--pt-c,var(--ink));
     padding:30px 22px;min-height:120px;
     border-left:1px solid var(--line-light)}
@@ -989,6 +989,7 @@
       <li class="ptname" style="--pt-c:#0B7C8A"><span class="pt-t">HOW Water</span></li>
       <li class="ptname" style="--pt-c:#B3271E;--pt-c2:#5A6577"><span class="pt-t">Bear&rsquo;s <span class="pt-sub">Smokehouse BBQ</span></span></li>
       <li class="ptname" style="--pt-c:#0B1524;--pt-c2:#5A6577"><span class="pt-t">Believe Co <span class="pt-sub">Clothing</span></span></li>
+      <li class="ptname" style="--pt-c:#8A6A45"><span class="pt-t">Buffalo Brothers</span></li>
     </ul>
 
     <p class="pt-note rise">Additional brand and community partners available on request.</p>
@@ -1204,6 +1205,29 @@
 (function(){
   "use strict";
   var $=function(s,c){return (c||document).querySelector(s)};
+
+  /* ---- Image fallback: retry the older filename once before giving up ---- */
+  (function(){
+    var LEGACY={
+      "images/team/taylor-wilson.png":"images/team/taylorheadshot.png",
+      "images/team/khalil-baker.png":"images/team/image__13_.png",
+      "images/athletes/navonn-barrett.jpg":"images/athletes/IMG_2568.jpeg",
+      "images/athletes/kaleb-brown.jpg":"images/athletes/IMG_6584.jpeg",
+      "images/gallery/11-bears-smokehouse.jpg":"images/gallery/IMG_0822.jpeg",
+      "images/gallery/12-pinnock-camp.jpg":"images/gallery/IMG_0843.jpeg",
+      "images/gallery/13-pinnock-camp-crowd.jpg":"images/gallery/IMG_0820.jpeg",
+      "images/gallery/14-gainbridge.jpg":"images/gallery/DSC04953_copy.jpeg",
+      "images/gallery/15-jersey-mikes.png":"images/gallery/C1854EBB-31E9-44AB-8E3A-19204A6D4D5C.png",
+      "images/gallery/16-hurricanes.jpg":"images/gallery/IMG_4236.jpeg"
+    };
+    document.addEventListener("error",function(e){
+      var el=e.target;
+      if(!el || el.tagName!=="IMG" || el.dataset.retried) return;
+      var src=el.getAttribute("src")||"";
+      if(LEGACY[src]){ el.dataset.retried="1"; el.src=LEGACY[src]; }
+    },true);
+  })();
+
   var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 
   /* ---- Scroll progress ---- */

@@ -54,8 +54,26 @@ Two different problems:
    Once the folder exists, Taylor's drops in normally.
 
 
+RUN THE IMAGE CHECK FIRST
+-------------------------
+imagecheck.html is included. Upload it, open yoursite.com/imagecheck.html
+and it lists every image the site expects, marking each FOUND or MISSING.
+Missing ones sort to the top. That tells you in five seconds exactly which
+file or folder name is wrong, instead of hunting page by page.
+Delete the file once everything passes.
+
+
 ALSO IN THIS BUILD
 ------------------
+Athlete card borders are now identical everywhere, including the scrolling
+strip at the top of the homepage. That strip previously had NO border on
+any card, so photos with their own background (Navonn's grey studio,
+Kaleb's stadium shot) read as loose rectangles.
+
+If an image was uploaded under an older filename from a previous package,
+the page now retries that older name automatically instead of showing a
+gap. Best to fix the filename anyway, but nothing will look broken.
+
 The "Jamond DuBose / Founder / Bio" section has been REMOVED from the
 bottom of the homepage. That content now lives only on Meet the Team.
 
