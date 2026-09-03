@@ -175,8 +175,9 @@
   .gs-viewport{overflow:hidden}
   .gs-track{display:flex;gap:16px;transition:transform .65s var(--ease);will-change:transform}
   /* Three photos per view; each letterboxes at its own proportions, never cropped */
+  .gs{--gal-h:clamp(200px,24vw,300px)}
   .gal-item{flex:0 0 calc((100% - 32px)/3);display:grid;
-            grid-template-rows:clamp(200px,24vw,300px) auto;gap:12px;
+            grid-template-rows:var(--gal-h) auto;gap:12px;
             background:var(--navy);border:1px solid var(--line-light);padding:14px;
             transition:border-color .3s var(--ease)}
   .gal-item:hover{border-color:var(--accent-light)}
@@ -185,7 +186,7 @@
   .gal-cap{text-align:center;font-size:.82rem;color:var(--on-dark-mute);line-height:1.5}
   .gal-cap b{display:block;font-family:var(--display);font-weight:400;font-size:1.06rem;
              color:var(--on-dark);letter-spacing:-.01em;margin-bottom:2px}
-  .gs-btn{position:absolute;top:calc(clamp(200px,24vw,300px)/2 + 14px);transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  .gs-btn{position:absolute;top:calc(var(--gal-h)/2 + 14px);transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
           border:1px solid var(--line-dark);background:rgba(14,27,46,.85);color:var(--on-dark);
           display:grid;place-items:center;cursor:pointer;z-index:3;transition:all .25s var(--ease)}
   @media (hover:hover){.gs-btn:hover{background:var(--accent-light);color:var(--navy);border-color:var(--accent-light)}}
@@ -394,9 +395,16 @@
   }
   @media (max-width:900px){
     .gal-item{flex:0 0 calc((100% - 16px)/2)}
+    .gs{--gal-h:clamp(240px,34vw,320px)}
   }
   @media (max-width:600px){
-    .gal-item{flex:0 0 100%}
+    /* One slide per view: let each photo set its own height instead of forcing
+       a fixed row, so portraits fill the card and landscapes don't leave gaps. */
+    .gal-item{flex:0 0 100%;padding:12px;grid-template-rows:auto auto;align-content:start}
+    .gal-item img{max-height:min(62vh,430px)}
+    .gs-track{align-items:flex-start}
+    .gs{--gal-h:clamp(300px,86vw,420px)}
+    .gs-btn{top:38%}
   }
   @media (max-width:520px){
     .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
@@ -636,6 +644,49 @@
     .tab-cta-m{display:block;color:var(--accent-light)}
     .nav-toggle{display:flex;min-width:44px;min-height:44px;align-items:center;justify-content:center;padding:0}
     .nav-cta,.nav-social{display:none}
+  }
+
+  /* ---------- Mobile polish: tap targets, legibility, breathing room ---------- */
+  @media (max-width:820px){
+    /* footer links were 18px tall - far below a comfortable thumb target */
+    .foot-list li{margin:0}
+    .foot-list a{display:block;padding:11px 0;min-height:44px;line-height:1.5}
+    .foot-list{gap:0}
+    .foot-h{margin-bottom:4px}
+
+    /* service tabs and carousel dots need real hit areas */
+    .tabbtn{min-height:44px;padding-top:10px;padding-bottom:10px}
+    .tstc-dots{gap:2px}
+    .tstc-dots button,.tstc-dots span,.tstc-dots a{min-width:34px;min-height:34px}
+
+    /* small labels were dipping under 12px */
+    .cta-btn{font-size:12.5px;padding:16px 18px;min-height:48px}
+    .eyebrow{font-size:11.5px}
+    .foot-h{font-size:11.5px}
+    .foot-list a,.cinfo a{font-size:.95rem}
+
+    /* keep long headings from crowding the edge */
+    .sec-h,.sub-h{line-height:1.12}
+  }
+  @media (max-width:820px){
+    /* interactive text specifically - badges and eyebrows stay small by design */
+    .path-cta{font-size:12px;min-height:46px;display:inline-flex;align-items:center}
+    .tabbtn{font-size:11.5px}
+    .tst-more{font-size:12.5px;padding:8px 0;min-height:40px}
+    .ig-kicker{font-size:11.5px}
+    /* prev/next were being squeezed to 17px wide between the dots */
+    .tstc-btn{flex:0 0 44px;width:44px;height:44px}
+    .tstc-nav,.tstc-controls{gap:8px}
+  }
+  @media (max-width:600px){
+    /* a little more air between stacked blocks so nothing reads as smooshed */
+    .gal-cap{font-size:.86rem}
+    .gal-cap b{font-size:1.02rem}
+    .mission-body{margin-top:6px}
+    .lvl{padding-top:18px;padding-bottom:18px}
+    .work{padding:22px 20px}
+    .ctaband{margin-top:34px}
+    .cta-pair{gap:12px}
   }
 </style></head><body>
 
