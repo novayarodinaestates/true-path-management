@@ -120,13 +120,18 @@
   .mq-viewport{overflow:hidden}
   .track{display:flex;gap:16px;will-change:transform}
   .pcard{flex:0 0 auto;width:clamp(160px,17vw,216px)}
-  .pcard-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#DCE1E8}
+  .pcard-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#DCE1E8;
+             border:1px solid var(--line-light);border-bottom:0;
+             transition:border-color .3s var(--ease)}
+  .pcard:hover .pcard-img{border-color:var(--accent)}
+  .hero .pcard-img{border:0}
   .pphoto{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
   .pcard:hover .pphoto,.pcard:focus-within .pphoto{transform:scale(1.04)}
   .pcard-meta{padding-top:12px;display:flex;flex-direction:column;gap:2px;text-align:left}
   .pname{font-family:var(--display);font-size:1.02rem;letter-spacing:-.01em;color:var(--ink)}
   .prole{font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
   .hero .pcard-img,.band-graphite .pcard-img{background:var(--navy-soft)}
+  .band-graphite .pcard-img{border-color:var(--line-dark)}
   .hero .pname,.band-graphite .pname{color:var(--on-dark)}
   .hero .prole,.band-graphite .prole{color:var(--on-dark-mute)}
   .mq-btn{position:absolute;top:38%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
@@ -645,7 +650,6 @@
   <a href="index.html" aria-label="True Path Management home"><img class="nav-logo" src="images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=3" alt="True Path Management" width="1254" height="1254" decoding="async" onerror="this.onerror=null;this.src='images/logo-mark.png'"></a>
   <div class="tabs-nav" id="tabsNav">
     <a class="tab-link active" href="#home">Home</a>
-    <a class="tab-link" href="#bio">About</a>
     <a class="tab-link" href="team.html">Meet the Team</a>
     <a class="tab-link" href="#athletes">Athletes</a>
     <a class="tab-link" href="#work">The Work</a>
@@ -689,8 +693,8 @@
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jamarcus-ingram.webp" alt="Ja'marcus Ingram" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Ja'marcus Ingram</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/keaontay-ingram.webp" alt="Keaontay Ingram" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Keaontay Ingram</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/zavier-scott.webp" alt="Zavier Scott" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Zavier Scott</span><span class="prole">Athlete</span></div></article>
-        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/IMG_2568.jpeg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async"></div><div class="pcard-meta"><span class="pname">Navonn Barrett</span><span class="prole">Athlete</span></div></article>
-        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/IMG_6584.jpeg" alt="Kaleb Brown" width="1290" height="1028" decoding="async"></div><div class="pcard-meta"><span class="pname">Kaleb Brown</span><span class="prole">Athlete</span></div></article>
+        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async"></div><div class="pcard-meta"><span class="pname">Navonn Barrett</span><span class="prole">Athlete</span></div></article>
+        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.jpg" alt="Kaleb Brown" width="1290" height="1028" decoding="async"></div><div class="pcard-meta"><span class="pname">Kaleb Brown</span><span class="prole">Athlete</span></div></article>
       </div></div>
       <button class="mq-btn mq-prev" id="mqPrev" aria-label="Previous athletes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="mq-btn mq-next" id="mqNext" aria-label="Next athletes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -845,28 +849,36 @@
           <figcaption class="gal-cap"><b>Postgame</b>Highmark Stadium</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/IMG_0822.jpeg" alt="Client standing with the Bear&#x27;s Smokehouse BBQ team at an evening event" width="2048" height="1369" decoding="async">
+          <img src="images/gallery/11-bears-smokehouse.jpg" alt="Client standing with the Bear&#x27;s Smokehouse BBQ team at an evening event" width="2048" height="1369" decoding="async">
           <figcaption class="gal-cap"><b>Client appearance</b>Bear&rsquo;s Smokehouse BBQ</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/IMG_0843.jpeg" alt="Camp host seated with young players in camp shirts at the end of a session" width="1638" height="2048" decoding="async">
+          <img src="images/gallery/12-pinnock-camp.jpg" alt="Camp host seated with young players in camp shirts at the end of a session" width="1638" height="2048" decoding="async">
           <figcaption class="gal-cap"><b>Football camp</b>Jason Pinnock Football Camp</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/IMG_0820.jpeg" alt="Young players and families applauding at a youth football camp" width="1638" height="2048" decoding="async">
+          <img src="images/gallery/13-pinnock-camp-crowd.jpg" alt="Young players and families applauding at a youth football camp" width="1638" height="2048" decoding="async">
           <figcaption class="gal-cap"><b>Camp day</b>Jason Pinnock Football Camp</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/DSC04953_copy.jpeg" alt="Group on the court at Gainbridge Fieldhouse after a playoff game" width="1365" height="2048" decoding="async">
+          <img src="images/gallery/14-gainbridge.jpg" alt="Group on the court at Gainbridge Fieldhouse after a playoff game" width="1365" height="2048" decoding="async">
           <figcaption class="gal-cap"><b>Courtside</b>Gainbridge Fieldhouse, Indianapolis</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/C1854EBB-31E9-44AB-8E3A-19204A6D4D5C.png" alt="Volunteers serving food under a Jersey Mike&#x27;s Subs tent at a community field day" width="1402" height="1122" decoding="async">
+          <img src="images/gallery/15-jersey-mikes.png" alt="Volunteers serving food under a Jersey Mike&#x27;s Subs tent at a community field day" width="1402" height="1122" decoding="async">
           <figcaption class="gal-cap"><b>Community day</b>Jersey Mike&rsquo;s Subs</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/IMG_4236.jpeg" alt="Client waving a rally towel to the crowd at a Carolina Hurricanes game" width="5472" height="3648" decoding="async">
+          <img src="images/gallery/16-hurricanes.jpg" alt="Client waving a rally towel to the crowd at a Carolina Hurricanes game" width="5472" height="3648" decoding="async">
           <figcaption class="gal-cap"><b>Arena appearance</b>Carolina Hurricanes</figcaption>
+        </figure>
+        <figure class="gal-item shot gs-slide">
+          <img src="images/gallery/17-texans-camp.jpg" alt="True Path Management staff with a Houston Texans player at training camp" width="1125" height="1500" decoding="async">
+          <figcaption class="gal-cap"><b>Training camp</b>Houston Texans</figcaption>
+        </figure>
+        <figure class="gal-item shot gs-slide">
+          <img src="images/gallery/18-texans-camp-group.jpg" alt="Three men on the field at Houston Texans training camp" width="1125" height="1500" decoding="async">
+          <figcaption class="gal-cap"><b>Sideline access</b>Houston Texans training camp</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/05-football-camp.webp" alt="Group photo in camp shirts at a youth football camp" width="1284" height="1459" decoding="async">
@@ -893,8 +905,8 @@
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jamarcus-ingram.webp" alt="Ja&#x27;marcus Ingram" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Ja&#x27;marcus Ingram</span><span class="pteam">Houston Texans</span><span class="pleague pleague--nfl">NFL</span></div></article>
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/keaontay-ingram.webp" alt="Keaontay Ingram" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Keaontay Ingram</span><span class="pteam">Kansas City Chiefs</span><span class="pleague pleague--nfl">NFL</span></div></article>
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/zavier-scott.webp" alt="Zavier Scott" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Zavier Scott</span><span class="pteam">Chicago Bears</span><span class="pleague pleague--nfl">NFL</span></div></article>
-      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/IMG_2568.jpeg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Navonn Barrett</span><span class="pteam">Missouri State</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
-      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/IMG_6584.jpeg" alt="Kaleb Brown" width="1290" height="1028" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Kaleb Brown</span><span class="pteam">Alabama A&amp;M</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
+      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Navonn Barrett</span><span class="pteam">Missouri State</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
+      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.jpg" alt="Kaleb Brown" width="1290" height="1028" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Kaleb Brown</span><span class="pteam">Alabama A&amp;M</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
     </div>
   
     <p class="eyebrow rise map-eyebrow">Nationwide representation</p>
@@ -1137,31 +1149,6 @@
   </div>
 </section>
 
-<!-- ============ BIO / GRAPHITE ============ -->
-<section id="bio" class="sec band-graphite pad-tight">
-  <div class="wrap">
-    <p class="eyebrow rise">Founder</p>
-    <h2 class="sec-h rise"><span class="accent">Bio</span></h2>
-
-    <div class="bio-card rise">
-      <img class="bio-avatar" src="images/founder/jamond-dubose-avatar.webp" alt="Jamond DuBose, Founder and CEO of True Path Management" width="300" height="300" loading="lazy" decoding="async">
-      <div class="bio-body">
-        <div class="bio-name">Jamond DuBose</div>
-        <div class="bio-role">Founder &amp; Chief Executive Officer</div>
-        <p>Jamond DuBose founded True Path Management to give athletes the kind of guidance he wished he&rsquo;d had. A former Division I football player who competed at three programs, earned starting roles at two, and was voted team captain at one, Jamond understands first-hand the pressures athletes face both on the field and off it, from managing their brand to protecting their long-term interests.</p>
-        <p>That experience shapes how True Path operates today. Jamond works as a professional athlete manager, helping clients navigate everything from brand and outsourced deal negotiation to lifestyle and career planning. His approach is built on a simple belief: the business he&rsquo;s truly in is his clients&rsquo; peace of mind.</p>
-        <div class="bio-actions">
-          <a class="bio-cta" href="contact.html">Get in touch <span aria-hidden="true">&rarr;</span></a>
-          <div class="nav-social">
-            <a class="soc-ico" href="https://www.instagram.com/truepathmgmt/" target="_blank" rel="noopener" aria-label="True Path Management on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.7" fill="none"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></a>
-            <a class="soc-ico" href="mailto:info@truepathmgmt.org" aria-label="Email True Path Management"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="m3.5 6.5 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ FOOTER / NAVY ============ -->
 <footer>
   <div class="foot-in">
@@ -1177,7 +1164,6 @@
       <p class="foot-h">Quick Links</p>
       <ul class="foot-list">
         <li><a href="#home">Home</a></li>
-        <li><a href="#bio">About</a></li>
         <li><a href="team.html">Meet the Team</a></li>
         <li><a href="#athletes">Athletes</a></li>
         <li><a href="#services">Services</a></li>
