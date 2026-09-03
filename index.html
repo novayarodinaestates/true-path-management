@@ -120,18 +120,13 @@
   .mq-viewport{overflow:hidden}
   .track{display:flex;gap:16px;will-change:transform}
   .pcard{flex:0 0 auto;width:clamp(160px,17vw,216px)}
-  .pcard-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#DCE1E8;
-             border:1px solid var(--line-light);border-bottom:0;
-             transition:border-color .3s var(--ease)}
-  .pcard:hover .pcard-img{border-color:var(--accent)}
-  .hero .pcard-img{border-color:var(--line-dark)}
+  .pcard-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#DCE1E8}
   .pphoto{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
   .pcard:hover .pphoto,.pcard:focus-within .pphoto{transform:scale(1.04)}
   .pcard-meta{padding-top:12px;display:flex;flex-direction:column;gap:2px;text-align:left}
   .pname{font-family:var(--display);font-size:1.02rem;letter-spacing:-.01em;color:var(--ink)}
   .prole{font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
   .hero .pcard-img,.band-graphite .pcard-img{background:var(--navy-soft)}
-  .band-graphite .pcard-img{border-color:var(--line-dark)}
   .hero .pname,.band-graphite .pname{color:var(--on-dark)}
   .hero .prole,.band-graphite .prole{color:var(--on-dark-mute)}
   .mq-btn{position:absolute;top:38%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
@@ -693,7 +688,7 @@
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jamarcus-ingram.webp" alt="Ja'marcus Ingram" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Ja'marcus Ingram</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/keaontay-ingram.webp" alt="Keaontay Ingram" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Keaontay Ingram</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/zavier-scott.webp" alt="Zavier Scott" width="600" height="800" decoding="async"></div><div class="pcard-meta"><span class="pname">Zavier Scott</span><span class="prole">Athlete</span></div></article>
-        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async"></div><div class="pcard-meta"><span class="pname">Navonn Barrett</span><span class="prole">Athlete</span></div></article>
+        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" alt="Navonn Barrett" width="1284" height="1963" decoding="async"></div><div class="pcard-meta"><span class="pname">Navonn Barrett</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.jpg" alt="Kaleb Brown" width="1290" height="1028" decoding="async"></div><div class="pcard-meta"><span class="pname">Kaleb Brown</span><span class="prole">Athlete</span></div></article>
       </div></div>
       <button class="mq-btn mq-prev" id="mqPrev" aria-label="Previous athletes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -905,7 +900,7 @@
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jamarcus-ingram.webp" alt="Ja&#x27;marcus Ingram" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Ja&#x27;marcus Ingram</span><span class="pteam">Houston Texans</span><span class="pleague pleague--nfl">NFL</span></div></article>
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/keaontay-ingram.webp" alt="Keaontay Ingram" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Keaontay Ingram</span><span class="pteam">Kansas City Chiefs</span><span class="pleague pleague--nfl">NFL</span></div></article>
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/zavier-scott.webp" alt="Zavier Scott" width="600" height="800" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Zavier Scott</span><span class="pteam">Chicago Bears</span><span class="pleague pleague--nfl">NFL</span></div></article>
-      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" style="object-position:center top" alt="Navonn Barrett" width="1284" height="1963" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Navonn Barrett</span><span class="pteam">Missouri State</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
+      <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.jpg" alt="Navonn Barrett" width="1284" height="1963" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Navonn Barrett</span><span class="pteam">Missouri State</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.jpg" alt="Kaleb Brown" width="1290" height="1028" decoding="async" loading="lazy"></div><div class="pcard-plate"><span class="pname">Kaleb Brown</span><span class="pteam">Alabama A&amp;M</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
     </div>
   
