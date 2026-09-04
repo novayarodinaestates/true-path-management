@@ -19,7 +19,7 @@ import os, sys
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PAGES = ["index.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
+PAGES = ["index.html", "team.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
 
 DEVICES = [
     (320, 568, "iPhone SE (smallest)"),

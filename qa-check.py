@@ -11,7 +11,7 @@ Static checks need nothing installed. --browser needs playwright:
 import os, re, sys, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PAGES = ["index.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
+PAGES = ["index.html", "team.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
 fails, warns, notes = [], [], []
 
 
