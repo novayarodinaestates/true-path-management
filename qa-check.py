@@ -40,6 +40,12 @@ def check():
             path = ref.split("#")[0].split("?")[0]
             if not path:
                 continue
+            # vercel.json sets cleanUrls, so "/team" is served from team.html
+            # and "/" from index.html. Resolve those before checking disk.
+            if path.startswith("/"):
+                path = "index.html" if path == "/" else path.lstrip("/")
+                if path and "." not in os.path.basename(path):
+                    path += ".html"
             if path in disk:
                 continue
             if path.lower() in lower:
