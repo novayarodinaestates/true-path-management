@@ -1298,6 +1298,16 @@
   if($("#home")){
     if("scrollRestoration" in history) history.scrollRestoration="manual";
 
+    /* Handed over by 404.html when the server routing did not catch a
+       section path: restore the intended address and treat it as a landing. */
+    try{
+      var handoff=sessionStorage.getItem("tpm:section");
+      if(handoff){
+        sessionStorage.removeItem("tpm:section");
+        if(SECTION_PATH[handoff]) history.replaceState({p:"/"+handoff},"","/"+handoff);
+      }
+    }catch(err){}
+
     /* Arriving straight at /services, or refreshing there.
        Images further down finish loading after the first jump and push the
        section lower, so re-seat it a few times until the page settles -
