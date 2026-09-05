@@ -673,13 +673,13 @@
 <nav><div class="nav-in">
   <a href="/" aria-label="True Path Management home"><img class="nav-logo" src="images/e209f55f-7d2d-44d3-a719-936151845a15.webp?v=4" alt="True Path Management" width="96" height="96" decoding="async" onerror="this.onerror=null;this.src='images/e209f55f-7d2d-44d3-a719-936151845a15.png'"></a>
   <div class="tabs-nav" id="tabsNav">
-    <a class="tab-link active" href="#home">Home</a>
+    <a class="tab-link active" href="/">Home</a>
     <a class="tab-link" href="/team">Meet the Team</a>
-    <a class="tab-link" href="#services">Services</a>
-    <a class="tab-link" href="#athletes">Athletes</a>
-    <a class="tab-link" href="#work">The Work</a>
-    <a class="tab-link" href="#testimonials">Testimonials</a>
-    <a class="tab-link" href="#impact">Impact</a>
+    <a class="tab-link" href="/services">Services</a>
+    <a class="tab-link" href="/athletes">Athletes</a>
+    <a class="tab-link" href="/work">The Work</a>
+    <a class="tab-link" href="/testimonials">Testimonials</a>
+    <a class="tab-link" href="/impact">Impact</a>
     <a class="tab-link tab-cta-m" href="/contact">Get in touch</a>
   </div>
   <div class="nav-right">
@@ -788,7 +788,7 @@
           <li>Lifestyle management</li>
           <li>Business development</li>
         </ul>
-        <a class="path-cta" href="#services" data-open-tab="rep">See off-field management</a>
+        <a class="path-cta" href="/services" data-open-tab="rep">See off-field management</a>
       </article>
 
       <article class="path">
@@ -801,7 +801,7 @@
           <li>Social strategy</li>
           <li>Career development</li>
         </ul>
-        <a class="path-cta" href="#services" data-open-tab="nil">Explore NIL representation</a>
+        <a class="path-cta" href="/services" data-open-tab="nil">Explore NIL representation</a>
       </article>
 
       <article class="path path--brand">
@@ -1179,13 +1179,12 @@
     <div>
       <p class="foot-h">Quick Links</p>
       <ul class="foot-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#team">The Team</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/team">Meet the Team</a></li>
-        <li><a href="#athletes">Athletes</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#impact">Impact</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="/athletes">Athletes</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/impact">Impact</a></li>
+        <li><a href="/testimonials">Testimonials</a></li>
       </ul>
     </div>
     <div>
@@ -1277,15 +1276,81 @@
     });
   }
 
+  /* ---- Section paths: real URLs for on-page sections, no # in the bar ----
+     vercel.json rewrites each of these to index.html, so landing on one
+     directly or refreshing works. Here we intercept in-page clicks so moving
+     between sections neither reloads the page nor shows a hash.
+     Note /team is the standalone team page, so the on-page #team band
+     deliberately has no path of its own. ---- */
+  var SECTION_PATH={home:"/",services:"/services",athletes:"/athletes",work:"/work",
+                    testimonials:"/testimonials",impact:"/impact",gallery:"/gallery"};
+  var PATH_SECTION={};
+  Object.keys(SECTION_PATH).forEach(function(id){PATH_SECTION[SECTION_PATH[id]]=id});
+  function tidyPath(p){return (p||"/").replace(/\/+$/,"")||"/"}
+  function sectionEl(path){var id=PATH_SECTION[tidyPath(path)]; return id?$("#"+id):null}
+
+  /* Dead placeholder links (social accounts not set up yet) must not park a # */
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest('a[href="#"]');
+    if(a) e.preventDefault();
+  });
+
+  if($("#home")){
+    if("scrollRestoration" in history) history.scrollRestoration="manual";
+
+    /* Arriving straight at /services, or refreshing there.
+       Images further down finish loading after the first jump and push the
+       section lower, so re-seat it a few times until the page settles -
+       abandoning the moment the visitor scrolls for themselves. */
+    var landing=tidyPath(location.pathname);
+    if(landing!=="/" && PATH_SECTION[landing]){
+      var target=sectionEl(landing);
+      if(target){
+        var userMoved=false;
+        ["wheel","touchstart","keydown","pointerdown"].forEach(function(ev){
+          window.addEventListener(ev,function(){userMoved=true},{passive:true,once:true});
+        });
+        var seat=function(){ if(!userMoved) target.scrollIntoView({block:"start"}) };
+        requestAnimationFrame(function(){requestAnimationFrame(seat)});
+        window.addEventListener("load",seat);
+        [250,700,1400].forEach(function(ms){setTimeout(seat,ms)});
+      }
+    }
+
+    function goTo(path,push){
+      path=tidyPath(path);
+      if(push && tidyPath(location.pathname)!==path) history.pushState({p:path},"",path);
+      if(path==="/"){window.scrollTo({top:0,behavior:"smooth"}); return}
+      var el=sectionEl(path);
+      if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    document.addEventListener("click",function(e){
+      if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+      var a=e.target.closest&&e.target.closest("a[href]");
+      if(!a||a.target==="_blank") return;
+      var href=a.getAttribute("href");
+      if(!(tidyPath(href) in PATH_SECTION)) return;
+      if(href!=="/" && !sectionEl(href)) return;   /* section missing: let it navigate */
+      e.preventDefault();
+      goTo(href,true);
+    });
+
+    window.addEventListener("popstate",function(){
+      var p=tidyPath(location.pathname);
+      if(p in PATH_SECTION) goTo(p,false);
+    });
+  }
+
   /* ---- Active nav link on scroll ---- */
-  var navLinks=$$('.tab-link[href^="#"]');
-  var sections=navLinks.map(function(a){return $(a.getAttribute("href"))}).filter(Boolean);
+  var navLinks=$$(".tab-link").filter(function(a){return tidyPath(a.getAttribute("href")) in PATH_SECTION});
+  var sections=navLinks.map(function(a){return sectionEl(a.getAttribute("href"))}).filter(Boolean);
   if("IntersectionObserver" in window && sections.length){
     var navObs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(!e.isIntersecting) return;
         navLinks.forEach(function(a){
-          a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id);
+          a.classList.toggle("active",tidyPath(a.getAttribute("href"))===SECTION_PATH[e.target.id]);
         });
       });
     },{rootMargin:"-45% 0px -50% 0px"});
