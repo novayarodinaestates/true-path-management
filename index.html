@@ -102,13 +102,13 @@
   .tab-cta-m{display:none}
 
   /* ---------- Hero ---------- */
-  .hero{background:var(--navy);color:var(--on-dark);padding:clamp(40px,5vw,66px) 0 clamp(60px,7vw,96px);
+  .hero{background:var(--navy);color:var(--on-dark);padding:clamp(56px,8vw,92px) 0 clamp(60px,7vw,96px);
         position:relative;overflow:hidden}
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;
                background:linear-gradient(180deg,transparent,rgba(8,19,32,.55));pointer-events:none}
   .hero-in{position:relative;z-index:2}
-  .hero-logo{height:clamp(148px,22vw,268px);width:auto;margin:0 auto;
-             filter:drop-shadow(0 0 2px rgba(255,255,255,.65)) drop-shadow(0 6px 36px rgba(78,157,255,.4))}
+  .hero-logo{height:clamp(112px,17vw,196px);width:auto;margin:0 auto;
+             filter:drop-shadow(0 0 1.5px rgba(255,255,255,.6)) drop-shadow(0 4px 26px rgba(78,157,255,.34))}
   .reptag{display:inline-flex;align-items:center;gap:9px;margin:26px auto 0;
           font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
           color:var(--accent-light);border:1px solid rgba(78,157,255,.34);
@@ -1301,6 +1301,13 @@
     rises.forEach(function(el){obs.observe(el)});
   } else { rises.forEach(function(el){el.classList.add("in")}) }
 
+  /* ---- Pointer capability: touch taps must never leave a carousel paused ----
+     Mobile browsers synthesise mouseenter on tap but never a matching
+     mouseleave, so a hover-pause latches on and the autoplay never resumes.
+     Every hover pause below is gated on a real mouse, with a watchdog that
+     clears any pause a touch device manages to set. ---- */
+  var HAS_MOUSE = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
   /* ---- Hero athlete strip: seamless continuous loop ---- */
   (function(){
     var track=$("#mqTrack"); if(!track) return;
@@ -1309,6 +1316,7 @@
     var SPEED=26;           /* px per second, slow drift */
     var DIR=-1;             /* -1 = travels right-to-left, 1 = left-to-right */
     var x=0, half=0, last=0, raf=null, paused=false;
+    var hoverPause=false, touchPause=false, focusPause=false, resumeT=null;
     var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /* Duplicate the set once so there is always a card entering the gap */
@@ -1344,21 +1352,50 @@
     function start(){if(reduce||raf) return; last=0; raf=requestAnimationFrame(frame)}
     function stop(){if(raf){cancelAnimationFrame(raf); raf=null}}
 
+    function syncPause(){
+      paused = hoverPause || touchPause || focusPause;
+      clearTimeout(resumeT);
+      if(paused && !HAS_MOUSE){
+        /* Nothing on a touch device may hold the drift for more than a beat */
+        resumeT=setTimeout(function(){
+          hoverPause=touchPause=focusPause=paused=false; start();
+        },1500);
+      }
+      if(!paused) start();
+    }
+    function clearPause(){
+      hoverPause=touchPause=focusPause=false;
+      clearTimeout(resumeT); paused=false; start();
+    }
+
     /* Arrows nudge a whole card along and keep the drift going */
     function nudge(n){
       var gap=parseFloat(getComputedStyle(track).gap)||0;
       x+=n*(originals[0].getBoundingClientRect().width+gap);
       normalise(); draw();
+      if(!HAS_MOUSE) clearPause();   /* a tap must hand the drift straight back */
     }
     var pv=$("#mqPrev"), nx=$("#mqNext");
     if(pv) pv.addEventListener("click",function(){nudge(1); pv.blur()});
     if(nx) nx.addEventListener("click",function(){nudge(-1); nx.blur()});
 
     if(wrap){
-      wrap.addEventListener("mouseenter",function(){paused=true});
-      wrap.addEventListener("mouseleave",function(){paused=false});
-      wrap.addEventListener("focusin",function(){paused=true});
-      wrap.addEventListener("focusout",function(){paused=false});
+      wrap.addEventListener("pointerenter",function(e){
+        if(e.pointerType==="mouse"){hoverPause=true; syncPause()}
+      });
+      wrap.addEventListener("pointerleave",function(e){
+        if(e.pointerType==="mouse"){hoverPause=false; syncPause()}
+      });
+      wrap.addEventListener("touchstart",function(){touchPause=true; syncPause()},{passive:true});
+      ["touchend","touchcancel","pointercancel"].forEach(function(ev){
+        wrap.addEventListener(ev,function(){touchPause=false; hoverPause=false; syncPause()},{passive:true});
+      });
+      /* Keyboard focus should hold it; a tap that merely focuses a button should not */
+      wrap.addEventListener("focusin",function(e){
+        var kb=true; try{kb=e.target.matches(":focus-visible")}catch(_){}
+        if(kb){focusPause=true; syncPause()}
+      });
+      wrap.addEventListener("focusout",function(){focusPause=false; syncPause()});
     }
     document.addEventListener("visibilitychange",function(){document.hidden?stop():start()});
     var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(measure,150)},{passive:true});
@@ -1421,8 +1458,18 @@
     if(p) p.addEventListener("click",function(){go(page-1); p.blur()});
     if(nx) nx.addEventListener("click",function(){go(page+1); nx.blur()});
     if(root){
-      root.addEventListener("mouseenter",function(){stop(); if(fill) fill.style.width="0"});
-      root.addEventListener("mouseleave",restart);
+      root.addEventListener("pointerenter",function(e){
+        if(e.pointerType!=="mouse") return;
+        stop(); if(fill) fill.style.width="0";
+      });
+      root.addEventListener("pointerleave",function(e){
+        if(e.pointerType==="mouse") restart();
+      });
+      /* On touch, any tap inside hands the timer straight back */
+      if(!HAS_MOUSE){
+        root.addEventListener("pointerup",function(){setTimeout(restart,0)},{passive:true});
+        root.addEventListener("pointercancel",restart,{passive:true});
+      }
     }
     var sx=null;
     track.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;stop()},{passive:true});
