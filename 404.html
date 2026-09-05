@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found | True Path Management</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070E1C">
+<link rel="icon" href="/images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=4" type="image/png">
+<script>
+/* Safety net for the on-page section paths.
+   vercel.json rewrites /services, /impact and friends to the homepage. If that
+   routing is ever missing or misconfigured, the request lands here instead of
+   on the section - so hand it straight to the homepage, which scrolls to the
+   right place on load. Keeps a shared link like /impact working either way. */
+(function(){
+  var SECTIONS=["services","athletes","work","testimonials","impact","gallery"];
+  var seg=location.pathname.replace(/^\/+|\/+$/g,"");
+  if(SECTIONS.indexOf(seg)>-1){
+    sessionStorage.setItem("tpm:section",seg);
+    location.replace("/");
+  }
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#070E1C;--accent-light:#4E9DFF;--on-dark:#F2EFE8;--on-dark-mute:#C3CCD8;
+        --display:"Newsreader",Georgia,serif;--sans:"DM Sans",system-ui,-apple-system,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--navy);color:var(--on-dark);font-family:var(--sans);line-height:1.6;
+       min-height:100vh;display:grid;place-items:center;padding:40px 24px;text-align:center;
+       -webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  .logo{height:clamp(96px,15vw,150px);width:auto;margin:0 auto 30px;
+        filter:drop-shadow(0 0 2px rgba(255,255,255,.6)) drop-shadow(0 6px 30px rgba(78,157,255,.36))}
+  h1{font-family:var(--display);font-weight:400;letter-spacing:-.015em;line-height:1.12;
+     font-size:clamp(1.9rem,4.2vw,2.9rem);max-width:18ch;margin:0 auto}
+  h1 em{font-style:italic;color:var(--accent-light)}
+  p{margin:18px auto 0;max-width:46ch;color:var(--on-dark-mute);font-size:1rem}
+  .row{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  a.btn{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+        text-decoration:none;padding:14px 22px;border-radius:2px;transition:background .25s,color .25s}
+  .btn--a{background:var(--on-dark);color:var(--navy)}
+  .btn--a:hover{background:var(--accent-light)}
+  .btn--b{border:1px solid rgba(242,239,232,.28);color:var(--on-dark)}
+  .btn--b:hover{border-color:var(--accent-light);color:var(--accent-light)}
+  @media (max-width:480px){ a.btn{width:100%;text-align:center} }
+</style>
+</head><body>
+<main>
+  <img class="logo" src="/images/49c34cde-c533-43f5-a181-22f49176719c.webp?v=4" alt="True Path Management" width="700" height="467"
+       onerror="this.onerror=null;this.src='/images/49c34cde-c533-43f5-a181-22f49176719c.png'">
+  <h1>That page isn&rsquo;t <em>here.</em></h1>
+  <p>The link may be out of date, or the address mistyped. Everything else is a click away.</p>
+  <div class="row">
+    <a class="btn btn--a" href="/">Back to home</a>
+    <a class="btn btn--b" href="/contact">Get in touch</a>
+  </div>
+</main>
+</body></html>
