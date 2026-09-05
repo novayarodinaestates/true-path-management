@@ -11,6 +11,15 @@ Static checks need nothing installed. --browser needs playwright:
 import os, re, sys, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Routing declared in vercel.json — the link checker must honour it.
+REWRITES = set()
+try:
+    with open(os.path.join(ROOT, "vercel.json")) as _f:
+        REWRITES = {r["source"] for r in json.load(_f).get("rewrites", [])}
+except Exception:
+    pass
+
 PAGES = ["index.html", "team.html", "contact.html", "faq.html", "privacy.html", "terms.html"]
 fails, warns, notes = [], [], []
 
@@ -40,9 +49,13 @@ def check():
             path = ref.split("#")[0].split("?")[0]
             if not path:
                 continue
-            # vercel.json sets cleanUrls, so "/team" is served from team.html
-            # and "/" from index.html. Resolve those before checking disk.
+            # Resolve the routing vercel.json declares before touching disk:
+            # cleanUrls means "/team" is served from team.html and "/" from
+            # index.html, and a rewrite source is a real URL with no file
+            # of its own (an on-page section such as /services).
             if path.startswith("/"):
+                if path in REWRITES:
+                    continue
                 path = "index.html" if path == "/" else path.lstrip("/")
                 if path and "." not in os.path.basename(path):
                     path += ".html"
