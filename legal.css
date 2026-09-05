@@ -4,8 +4,8 @@
     --cream:#F7F4ED; --cream-deep:#EFEAE1;
     --gray-light:#E2E6EB; --graphite:#1F2530; --graphite-soft:#2A3140;
     --accent:#1B4FA6; --accent-light:#4E9DFF;
-    --ink:#0B1524; --slate:#5A6577; --slate-soft:#868FA0;
-    --on-dark:#F2EFE8; --on-dark-mute:#A9B3BF;
+    --ink:#0B1524; --slate:#3D4757; --slate-soft:#5A6577;
+    --on-dark:#F2EFE8; --on-dark-mute:#C3CCD8;
     --line-dark:rgba(242,239,232,.14); --line-light:#E0DACE; --line-gray:#CFD3D6;
     --danger:#A6321B;
     --display:"Newsreader",Georgia,serif;
@@ -108,18 +108,18 @@
   footer{background:var(--navy-deep);color:var(--on-dark);padding:clamp(56px,7vw,88px) 0 0}
   .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,52px);
            display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,5vw,60px)}
-  .foot-logo{height:56px;width:auto;
+  .foot-logo{height:66px;width:auto;
              filter:drop-shadow(0 0 1px rgba(255,255,255,.5)) drop-shadow(0 2px 14px rgba(78,157,255,.28))}
-  .foot-blurb{margin-top:18px;font-size:.93rem;color:var(--on-dark-mute);max-width:40ch;line-height:1.7}
+  .foot-blurb{margin-top:18px;font-size:.98rem;color:var(--on-dark-mute);max-width:40ch;line-height:1.7}
   .foot-social{margin-top:20px;display:flex;gap:10px}
-  .foot-h{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-          color:var(--accent-light);margin-bottom:16px}
+  .foot-h{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+          color:#7FB6FF;margin-bottom:16px}
   .foot-list{list-style:none;display:flex;flex-direction:column;gap:11px}
-  .foot-list a{font-size:.93rem;color:var(--on-dark-mute);text-decoration:none;transition:color .25s var(--ease)}
+  .foot-list a{font-size:.98rem;color:var(--on-dark-mute);text-decoration:none;transition:color .25s var(--ease)}
   .foot-list a:hover{color:var(--on-dark)}
   .foot-bottom{margin-top:clamp(44px,5vw,64px);border-top:1px solid var(--line-dark);
                padding:22px clamp(20px,5vw,52px);text-align:center}
-  .foot-bottom span{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-soft)}
+  .foot-bottom span{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark-mute)}
 
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
     outline:2px solid var(--accent-light);outline-offset:3px}

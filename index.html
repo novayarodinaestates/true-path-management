@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="True Path Management. We manage the off-field lives, brands, and businesses of elite athletes. NIL representation for collegiate athletes; off-field business management for professionals, working alongside their certified contract agents.">
-<link rel="icon" href="images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=3" type="image/png">
-<link rel="apple-touch-icon" href="images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=3">
+<link rel="icon" href="images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=4" type="image/png">
+<link rel="apple-touch-icon" href="images/e209f55f-7d2d-44d3-a719-936151845a15.png?v=4">
 <meta property="og:type" content="website">
 <meta property="og:title" content="True Path Management | Off-Field Athlete Management">
 <meta property="og:description" content="We manage the off-field lives, brands, and businesses of elite athletes, collaborating directly with certified contract agents.">
@@ -24,8 +24,8 @@
     --cream:#F7F4ED; --cream-deep:#EFEAE1;
     --gray-light:#E2E6EB; --graphite:#1F2530; --graphite-soft:#2A3140;
     --accent:#1B4FA6; --accent-light:#4E9DFF;
-    --ink:#0B1524; --slate:#5A6577; --slate-soft:#868FA0;
-    --on-dark:#F2EFE8; --on-dark-mute:#A9B3BF;
+    --ink:#0B1524; --slate:#3D4757; --slate-soft:#5A6577;
+    --on-dark:#F2EFE8; --on-dark-mute:#C3CCD8;
     --line-dark:rgba(242,239,232,.14); --line-light:#E0DACE; --line-gray:#CFD3D6;
     --display:"Newsreader",Georgia,serif;
     --sans:"DM Sans",system-ui,-apple-system,sans-serif;
@@ -145,7 +145,7 @@
   .mission{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
   .mission .mlead{font-family:var(--display);font-size:clamp(1.25rem,2.2vw,1.62rem);line-height:1.38;
                   letter-spacing:-.01em;color:var(--ink)}
-  .mission-body p{color:var(--slate);margin-bottom:16px;line-height:1.72}
+  .mission-body p{color:var(--ink);font-size:clamp(1rem,1.5vw,1.12rem);margin-bottom:16px;line-height:1.7}
   .mission-body p:last-child{margin-bottom:0}
   .mission-body strong{color:var(--ink);font-weight:600}
 
@@ -159,7 +159,7 @@
   .lvl-ico{color:var(--accent)}
   .lvl-ico svg{width:26px;height:26px}
   .lvl-title{font-family:var(--display);font-size:1.22rem;letter-spacing:-.01em;line-height:1.25}
-  .lvl-sub{font-size:.9rem;color:var(--slate);line-height:1.6}
+  .lvl-sub{font-size:1rem;color:var(--ink);line-height:1.6}
 
   /* ---------- Connect ---------- */
 
@@ -311,19 +311,19 @@
   footer{background:var(--navy-deep);color:var(--on-dark);padding:clamp(56px,7vw,88px) 0 0}
   .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,52px);
            display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,5vw,60px)}
-  .foot-logo{height:56px;width:auto;
+  .foot-logo{height:66px;width:auto;
              filter:drop-shadow(0 0 1px rgba(255,255,255,.5)) drop-shadow(0 2px 14px rgba(78,157,255,.28))}
-  .foot-blurb{margin-top:18px;font-size:.93rem;color:var(--on-dark-mute);max-width:40ch;line-height:1.7}
+  .foot-blurb{margin-top:18px;font-size:.98rem;color:var(--on-dark-mute);max-width:40ch;line-height:1.7}
   .foot-social{margin-top:20px;display:flex;gap:10px}
-  .foot-h{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-          color:var(--accent-light);margin-bottom:16px}
+  .foot-h{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+          color:#7FB6FF;margin-bottom:16px}
   .foot-list{list-style:none;display:flex;flex-direction:column;gap:11px}
-  .foot-list a{font-size:.93rem;color:var(--on-dark-mute);text-decoration:none;transition:color .25s var(--ease)}
+  .foot-list a{font-size:.98rem;color:var(--on-dark-mute);text-decoration:none;transition:color .25s var(--ease)}
   .foot-list a:hover{color:var(--on-dark)}
   .foot-bottom{margin-top:clamp(44px,5vw,64px);border-top:1px solid var(--line-dark);
                padding:22px clamp(20px,5vw,52px);text-align:center}
-  .foot-bottom span{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-                    color:var(--slate-soft)}
+  .foot-bottom span{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+                    color:var(--on-dark-mute)}
 
   /* ---------- Back to top ---------- */
   .to-top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;
@@ -489,7 +489,8 @@
 
   /* ---- hero support line (review #2) ---- */
   .hero-sub{margin:18px auto 0;max-width:52ch;font-family:var(--sans);font-size:.98rem;
-    line-height:1.6;color:var(--on-dark-mute)}
+    line-height:1.6;color:var(--on-dark-mute);text-align:center}
+  .hero-sub .hs-line{display:block}
 
   /* ---- audience pathways (review #3) ---- */
   .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
@@ -552,7 +553,11 @@
   .ptname:first-child{border-left:none}
   .pt-t{display:block}
   .pt-sub{color:var(--pt-c2,var(--slate))}
-  .pt-note{margin:26px 0 0;font-size:.86rem;color:var(--slate-soft)}
+  .ptname--more{grid-column:1/-1;border-left:none;min-height:0;padding:22px 22px 0;
+    border-top:1px solid var(--line-light)}
+  .ptname--more .pt-t{font-style:italic;color:var(--slate);letter-spacing:0;
+    font-size:clamp(1rem,1.25vw,1.2rem)}
+  .pt-note{margin:26px 0 0;font-size:.92rem;color:var(--slate)}
   .pt-legal{margin:14px 0 0;max-width:76ch;font-size:.8rem;line-height:1.6;color:var(--slate-soft)}
 
   /* ---- testimonial group tag (review #6) ---- */
@@ -566,6 +571,7 @@
     .ptname{font-size:1.3rem;min-height:104px;padding:24px 18px}
     .ptname:nth-child(odd){border-left:none}
     .ptname:nth-child(n+3){border-top:1px solid var(--line-light)}
+    .ptname--more{padding:20px 18px 0}
   }
   @media (max-width:420px){
     .ptnames{grid-template-columns:1fr}
@@ -641,7 +647,7 @@
 <div class="scroll-prog" id="prog"></div>
 
 <nav><div class="nav-in">
-  <a href="index.html" aria-label="True Path Management home"><img class="nav-logo" src="images/e209f55f-7d2d-44d3-a719-936151845a15.webp?v=3" alt="True Path Management" width="96" height="96" decoding="async" onerror="this.onerror=null;this.src='images/e209f55f-7d2d-44d3-a719-936151845a15.png'"></a>
+  <a href="index.html" aria-label="True Path Management home"><img class="nav-logo" src="images/e209f55f-7d2d-44d3-a719-936151845a15.webp?v=4" alt="True Path Management" width="96" height="96" decoding="async" onerror="this.onerror=null;this.src='images/e209f55f-7d2d-44d3-a719-936151845a15.png'"></a>
   <div class="tabs-nav" id="tabsNav">
     <a class="tab-link active" href="#home">Home</a>
     <a class="tab-link" href="team.html">Meet the Team</a>
@@ -672,10 +678,10 @@
   <span class="hero-rail hr-r" aria-hidden="true">Off-field representation</span>
   <div class="wrap hero-in">
     <div class="hero-center">
-      <img class="hero-logo" src="images/49c34cde-c533-43f5-a181-22f49176719c.webp?v=3" alt="True Path Management" width="700" height="467" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='images/49c34cde-c533-43f5-a181-22f49176719c.png'">
+      <img class="hero-logo" src="images/49c34cde-c533-43f5-a181-22f49176719c.webp?v=4" alt="True Path Management" width="700" height="467" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='images/49c34cde-c533-43f5-a181-22f49176719c.png'">
       <div class="reptag"><span class="gdot"><span class="gdot-ring"></span></span><span class="reptag-txt">Athlete Management</span></div>
       <h1 class="hero-line"><span class="sr-only">True Path Management — off-field business management for professional athletes and NIL representation for collegiate athletes. </span>Your career is bigger than your contract. We make sure your business, brand, and <em>life are built like it.</em></h1>
-      <p class="hero-sub">Off-field management for professional athletes. NIL representation for the next generation.</p>
+      <p class="hero-sub"><span class="hs-line">Off-field management for professional athletes.</span><span class="hs-line">NIL representation for the next generation.</span></p>
     </div>
 
     <div class="hero-marquee">
@@ -684,6 +690,7 @@
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jordan-hall.webp" alt="Jordan Hall" width="600" height="800" decoding="async" onerror="this.onerror=null;this.src='images/athletes/jordan-hall.jpg'"></div><div class="pcard-meta"><span class="pname">Jordan Hall</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/jason-pinnock.webp" alt="Jason Pinnock" width="600" height="800" decoding="async" onerror="this.onerror=null;this.src='images/athletes/jason-pinnock.jpg'"></div><div class="pcard-meta"><span class="pname">Jason Pinnock</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/keaontay-ingram.webp" alt="Keaontay Ingram" width="600" height="800" decoding="async" onerror="this.onerror=null;this.src='images/athletes/keaontay-ingram.jpg'"></div><div class="pcard-meta"><span class="pname">Keaontay Ingram</span><span class="prole">Athlete</span></div></article>
+        <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/navonn-barrett.webp" alt="Navonn Barrett" width="450" height="600" decoding="async" onerror="this.onerror=null;this.src='images/athletes/navonn-barrett.jpg'"></div><div class="pcard-meta"><span class="pname">Navonn Barrett</span><span class="prole">Athlete</span></div></article>
         <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.webp" alt="Kaleb Brown" width="450" height="600" decoding="async" onerror="this.onerror=null;this.src='images/athletes/kaleb-brown.jpg'"></div><div class="pcard-meta"><span class="pname">Kaleb Brown</span><span class="prole">Athlete</span></div></article>
       </div></div>
       <button class="mq-btn mq-prev" id="mqPrev" aria-label="Previous athletes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -726,7 +733,7 @@
 
       <article class="path path--brand">
         <h3 class="path-h">Brands &amp; Partners</h3>
-        <p class="path-d">Direct access to a vetted roster across the NFL and NBA.</p>
+        <p class="path-d">Direct access to a vetted roster at every level &mdash; NFL, NBA, college, and high school.</p>
         <ul class="path-l">
           <li>Athlete partnerships</li>
           <li>Appearances</li>
@@ -801,11 +808,12 @@
       </div>
 
       <div class="panel" id="finance">
-        <h3>Long-Term Financial Positioning</h3>
-        <p>We help athletes turn the opportunity of today into lasting security by structuring decisions and partnerships that protect and grow what they build, well beyond their playing career.</p>
+        <h3>Financial Guidance &amp; Referrals</h3>
+        <p>Athletes should learn the money side early. We connect our clients &mdash; collegiate athletes in particular &mdash; with vetted, independent financial advisors who can help them understand, protect, and grow what they earn.</p>
+        <p><strong>To be clear.</strong> True Path Management does not manage, invest, structure, or advise on any client&rsquo;s personal finances. We make introductions and help athletes build the right professional team around them. All financial planning, advice, and decisions rest with the athlete and their licensed advisor.</p>
         <div class="fin-wrap">
           <svg class="fin-ico" viewBox="0 0 48 48" aria-hidden="true" fill="none"><rect x="3" y="11" width="42" height="26" rx="4" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="7.5" stroke="currentColor" stroke-width="2.2"/><path d="M24 19.2v9.6M26.6 21.1c-.6-.7-1.6-1.1-2.6-1.1-1.5 0-2.7.8-2.7 2s1.2 1.8 2.7 2 2.7.8 2.7 2-1.2 2-2.7 2c-1 0-2-.4-2.6-1.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="9.5" cy="17.5" r="1.6" fill="currentColor"/><circle cx="38.5" cy="30.5" r="1.6" fill="currentColor"/><path d="M7 41h34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-opacity=".45"/><path d="M11 45h26" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-opacity=".22"/></svg>
-          <span class="fin-note">Built to last beyond the final snap</span>
+          <span class="fin-note">Introductions to licensed advisors &mdash; never financial advice from us</span>
         </div>
       </div>
     </div>
@@ -815,7 +823,6 @@
 <!-- ============ ROSTER / CREAM ============ -->
 <section id="roster" class="sec band-cream">
   <div class="wrap">
-    <p class="eyebrow rise">Roster</p>
     <h2 class="sec-h rise">Across the <span class="accent">leagues</span></h2>
 
     <div class="mission rise">
@@ -867,7 +874,7 @@
       <article class="pcard"><div class="pcard-img"><img class="pphoto" src="images/athletes/kaleb-brown.webp" alt="Kaleb Brown" width="450" height="600" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/athletes/kaleb-brown.jpg'"></div><div class="pcard-plate"><span class="pname">Kaleb Brown</span><span class="pteam">Alabama A&amp;M</span><span class="pleague pleague--ncaa">NCAA D1</span></div></article>
     </div>
   
-    <p class="roster-note rise">Nine athletes across the NFL, NBA and Division I &mdash; <span class="accent">Indianapolis to San Francisco, New York to Houston.</span></p>
+    <p class="roster-note rise">Clients from coast to coast &mdash; <span class="accent">Division I campuses to the NFL and NBA.</span></p>
 </div>
 </section>
 
@@ -902,9 +909,9 @@
       </article>
 
       <article class="work">
-        <h3 class="work-h">Roster across the leagues</h3>
+        <h3 class="work-h">Across the leagues</h3>
         <p class="work-d">Off-field management for athletes competing at the highest level, coast to coast.</p>
-        <p class="work-r"><strong>Nine athletes represented</strong> across the NFL, NBA, and Division I.</p>
+        <p class="work-r"><strong>Athletes represented</strong> across the NFL, NBA, and Division I.</p>
       </article>
 
     </div>
@@ -933,7 +940,7 @@
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/02-school-visit.webp" alt="Two men holding a school mascot cutout in a gymnasium" width="800" height="1200" decoding="async" onerror="this.onerror=null;this.src='images/gallery/02-school-visit.jpg'">
-          <figcaption class="gal-cap"><b>School visit</b>Community appearance</figcaption>
+          <figcaption class="gal-cap"><b>Nonprofit foundation event</b>Nyghtmare Foundation</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/06-browns-camp.webp" alt="Two men on the practice field at Cleveland Browns training camp" width="988" height="1200" decoding="async" onerror="this.onerror=null;this.src='images/gallery/06-browns-camp.jpg'">
@@ -941,7 +948,7 @@
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/18texanscampgroup.webp" alt="Three men on the field at Houston Texans training camp" width="900" height="1200" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/18texanscampgroup.jpg'">
-          <figcaption class="gal-cap"><b>Sideline access</b>Houston Texans training camp</figcaption>
+          <figcaption class="gal-cap"><b>Training camp</b>Houston Texans</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/04-brand-event.webp" alt="Two men at a brand event in front of a sponsor banner" width="960" height="1200" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/04-brand-event.jpg'">
@@ -976,16 +983,12 @@
           <figcaption class="gal-cap"><b>Football camp</b>Jason Pinnock Football Camp</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
-          <img src="images/gallery/13-pinnock-camp-crowd.webp" alt="Young players and families applauding at a youth football camp" width="960" height="1200" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/13-pinnock-camp-crowd.jpg'">
-          <figcaption class="gal-cap"><b>Camp day</b>Jason Pinnock Football Camp</figcaption>
-        </figure>
-        <figure class="gal-item shot gs-slide">
           <img src="images/gallery/14-gainbridge.webp" alt="Group on the court at Gainbridge Fieldhouse after a playoff game" width="800" height="1200" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/14-gainbridge.jpg'">
           <figcaption class="gal-cap"><b>Courtside</b>Gainbridge Fieldhouse, Indianapolis</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/15-jersey-mikes.webp" alt="Volunteers serving food under a Jersey Mike&#x27;s Subs tent at a community field day" width="1200" height="960" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/15-jersey-mikes.png'">
-          <figcaption class="gal-cap"><b>Community day</b>Jersey Mike&rsquo;s Subs</figcaption>
+          <figcaption class="gal-cap"><b>Camp day</b>Jersey Mike&rsquo;s Subs sponsorship</figcaption>
         </figure>
         <figure class="gal-item shot gs-slide">
           <img src="images/gallery/16-hurricanes.webp" alt="Client waving a rally towel to the crowd at a Carolina Hurricanes game" width="1200" height="800" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/gallery/16-hurricanes.jpg'">
@@ -1027,6 +1030,7 @@
       <li class="ptname" style="--pt-c:#B3271E;--pt-c2:#5A6577"><span class="pt-t">Bear&rsquo;s <span class="pt-sub">Smokehouse BBQ</span></span></li>
       <li class="ptname" style="--pt-c:#0B1524;--pt-c2:#5A6577"><span class="pt-t">Believe Co <span class="pt-sub">Clothing</span></span></li>
       <li class="ptname" style="--pt-c:#8A6A45"><span class="pt-t">Buffalo Brothers</span></li>
+      <li class="ptname ptname--more"><span class="pt-t">and many more&hellip;</span></li>
     </ul>
 
     <p class="pt-note rise">Additional brand and community partners available on request.</p>
@@ -1099,17 +1103,14 @@
 
     <div class="impact-grid rise">
       <div class="impact-card">
-        <span class="impact-num">01</span>
         <h3>Youth Football Camps</h3>
         <p>Giving back to the next generation by providing elite training, mentorship, and community engagement alongside top-tier athletes.</p>
       </div>
       <div class="impact-card">
-        <span class="impact-num">02</span>
         <h3>Community &amp; Philanthropy</h3>
         <p>Launching and managing player foundations to support local neighborhoods and create sustainable charitable initiatives.</p>
       </div>
       <div class="impact-card">
-        <span class="impact-num">03</span>
         <h3>Brand Activation Events</h3>
         <p>Vetting and executing premier marketing events, popup experiences, and community drives with trusted corporate partners.</p>
       </div>
@@ -1122,7 +1123,7 @@
 <footer>
   <div class="foot-in">
     <div>
-      <img class="foot-logo" src="images/49c34cde-c533-43f5-a181-22f49176719c.webp?v=3" alt="True Path Management" width="700" height="467" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/49c34cde-c533-43f5-a181-22f49176719c.png'">
+      <img class="foot-logo" src="images/49c34cde-c533-43f5-a181-22f49176719c.webp?v=4" alt="True Path Management" width="700" height="467" decoding="async" loading="lazy" onerror="this.onerror=null;this.src='images/49c34cde-c533-43f5-a181-22f49176719c.png'">
       <p class="foot-blurb">We manage the off-field lives, brands, and businesses of elite athletes.</p>
       <div class="foot-social">
         <a class="soc-ico" href="https://www.instagram.com/truepathmgmt/" target="_blank" rel="noopener" aria-label="True Path Management on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.7" fill="none"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></a>
@@ -1183,7 +1184,6 @@
       "images/athletes/kaleb-brown.jpg":"images/athletes/IMG_6584.jpeg",
       "images/gallery/11-bears-smokehouse.jpg":"images/gallery/IMG_0822.jpeg",
       "images/gallery/12-pinnock-camp.jpg":"images/gallery/IMG_0843.jpeg",
-      "images/gallery/13-pinnock-camp-crowd.jpg":"images/gallery/IMG_0820.jpeg",
       "images/gallery/14-gainbridge.jpg":"images/gallery/DSC04953_copy.jpeg",
       "images/gallery/15-jersey-mikes.png":"images/gallery/C1854EBB-31E9-44AB-8E3A-19204A6D4D5C.png",
       "images/gallery/16-hurricanes.jpg":"images/gallery/IMG_4236.jpeg",
