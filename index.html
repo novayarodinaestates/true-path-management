@@ -464,11 +464,27 @@
              letter-spacing:-.01em;color:var(--ink);max-width:46ch;margin-top:20px}
   .tmini-row{list-style:none;margin:36px 0 0;padding:0;display:grid;
              grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-light)}
-  .tmini{background:var(--cream-deep);padding:26px 24px;display:flex;flex-direction:column;gap:6px;
-         transition:background .3s var(--ease)}
+  .tmini{background:var(--cream-deep);transition:background .3s var(--ease)}
   .tmini:hover{background:var(--cream)}
+  .tmini-d{display:block}
+  .tmini-sum{list-style:none;cursor:pointer;padding:26px 24px;display:flex;align-items:center;gap:16px;
+             -webkit-tap-highlight-color:transparent}
+  .tmini-sum::-webkit-details-marker{display:none}
+  .tmini-sum::marker{content:""}
+  .tmini-av{position:relative;flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden;
+            background:var(--cream);border:1px solid var(--line-light)}
+  .tmini-av img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;
+                position:relative;z-index:1}
+  .tmini-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+            font-family:var(--display);font-size:1.05rem;color:var(--slate-soft);z-index:0}
+  .tmini-meta{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
   .tmini-n{font-family:var(--display);font-size:1.22rem;letter-spacing:-.01em;line-height:1.25;color:var(--ink)}
   .tmini-r{font-size:.92rem;color:var(--slate);line-height:1.5}
+  .tmini-car{flex:none;width:18px;height:18px;color:var(--slate);transition:transform .3s var(--ease)}
+  .tmini-d[open] .tmini-car{transform:rotate(180deg)}
+  .tmini-bio{margin:0;padding:0 24px 26px;font-size:.9rem;line-height:1.65;color:var(--slate)}
+  .tmini-bio p{margin:0}
+  .tmini-bio p+p{margin-top:10px}
   .team-cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;
             font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;
             text-transform:uppercase;text-decoration:none;color:#fff;background:var(--ink);
@@ -726,52 +742,6 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS / CREAM DEEP ============ -->
-<section id="testimonials" class="sec band-cream-deep">
-  <div class="wrap">
-    <p class="eyebrow rise">Testimonials</p>
-    <h2 class="sec-h rise">In their <span class="accent">words</span></h2>
-
-    <div class="tstc rise">
-      <div class="tstc-viewport"><div class="tstc-track" id="tstcTrack">
-        <figure class="tst tstc-slide">
-          <span class="tst-tag">Athlete testimonial</span>
-          <blockquote class="tst-q">
-            <p>&ldquo;I played football with Jamond, and he is a true professional. He&rsquo;s the kind of person I could call at any time of day and know he would answer. He has a unique ability to connect with people because he genuinely means what he says and carries himself with integrity.</p>
-            <p>He was the first person I thought of when my brother became unhappy with his agent while in the transfer portal. Jamond made a few calls, and by the very next day, my brother had visits scheduled with three Power Five schools.</p>
-            <p>This is the person you want representing you. Not only does he have an extensive network of contacts, but he also approaches his work with the right intentions. He isn&rsquo;t simply motivated by commissions; he&rsquo;s passionate about helping people achieve their goals.</p>
-            <p>Jamond has competed at a high level, understands the business, and genuinely cares about the people he serves. I would trust him without hesitation.&rdquo;</p>
-          </blockquote>
-          <figcaption class="tst-by"><span class="tst-av">CB</span><span><span class="tst-name">Carson Brantley</span><span class="tst-role">Former Teammate</span></span></figcaption>
-        </figure>
-        <figure class="tst tstc-slide">
-          <span class="tst-tag">Athlete testimonial</span>
-          <blockquote class="tst-q"><p>&ldquo;Man it was great! As soon as I get videos and pictures I&rsquo;ll send them to you! I appreciate the help again and am excited to see what comes from here.&rdquo;</p></blockquote>
-          <figcaption class="tst-by"><span class="tst-av">ZS</span><span><span class="tst-name">Zavier Scott</span><span class="tst-role">Chicago Bears</span></span></figcaption>
-        </figure>
-        <figure class="tst tstc-slide">
-          <span class="tst-tag">Family &amp; partner</span>
-          <blockquote class="tst-q"><p>&ldquo;Thank you so much for helping us with the camps! I&rsquo;m excited to have you in my life and to continue building Ja&rsquo;Marcus&rsquo; legacy!!&rdquo;</p></blockquote>
-          <figcaption class="tst-by"><span class="tst-av">TM</span><span><span class="tst-name">Tresa McMillian</span><span class="tst-role">Client Family</span></span></figcaption>
-        </figure>
-        <!-- POSITIONING CONFLICT: this quote calls Jamond an "Agent", which cuts against the
-             co-agent positioning stated in Services. Do not edit a real person's words. Either
-             ask Brandy for a revised quote or remove this card. Left as-is pending Jamond's call. -->
-        <figure class="tst tstc-slide">
-          <span class="tst-tag">Family &amp; partner</span>
-          <blockquote class="tst-q"><p>&ldquo;Jamond, appreciate you making sure we were straight going and coming. You are great at what you do and even see you being great as an Agent for sports athletes. Just my observation.&rdquo;</p></blockquote>
-          <figcaption class="tst-by"><span class="tst-av">BR</span><span><span class="tst-name">Brandy Rogers</span><span class="tst-role">Client Family</span></span></figcaption>
-        </figure>
-      </div></div>
-      <div class="tstc-nav">
-        <button class="tstc-btn" id="tstcPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="tstc-dots" id="tstcDots"></div>
-        <button class="tstc-btn" id="tstcNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ WHO WE WORK WITH / CREAM ============ -->
 <section id="paths" class="sec band-cream">
   <div class="wrap">
@@ -928,7 +898,51 @@
   </div>
 </section>
 
+<!-- ============ TESTIMONIALS / CREAM DEEP ============ -->
+<section id="testimonials" class="sec band-cream-deep">
+  <div class="wrap">
+    <p class="eyebrow rise">Testimonials</p>
+    <h2 class="sec-h rise">In their <span class="accent">words</span></h2>
 
+    <div class="tstc rise">
+      <div class="tstc-viewport"><div class="tstc-track" id="tstcTrack">
+        <figure class="tst tstc-slide">
+          <span class="tst-tag">Athlete testimonial</span>
+          <blockquote class="tst-q">
+            <p>&ldquo;I played football with Jamond, and he is a true professional. He&rsquo;s the kind of person I could call at any time of day and know he would answer. He has a unique ability to connect with people because he genuinely means what he says and carries himself with integrity.</p>
+            <p>He was the first person I thought of when my brother became unhappy with his agent while in the transfer portal. Jamond made a few calls, and by the very next day, my brother had visits scheduled with three Power Five schools.</p>
+            <p>This is the person you want representing you. Not only does he have an extensive network of contacts, but he also approaches his work with the right intentions. He isn&rsquo;t simply motivated by commissions; he&rsquo;s passionate about helping people achieve their goals.</p>
+            <p>Jamond has competed at a high level, understands the business, and genuinely cares about the people he serves. I would trust him without hesitation.&rdquo;</p>
+          </blockquote>
+          <figcaption class="tst-by"><span class="tst-av">CB</span><span><span class="tst-name">Carson Brantley</span><span class="tst-role">Former Teammate</span></span></figcaption>
+        </figure>
+        <figure class="tst tstc-slide">
+          <span class="tst-tag">Athlete testimonial</span>
+          <blockquote class="tst-q"><p>&ldquo;Man it was great! As soon as I get videos and pictures I&rsquo;ll send them to you! I appreciate the help again and am excited to see what comes from here.&rdquo;</p></blockquote>
+          <figcaption class="tst-by"><span class="tst-av">ZS</span><span><span class="tst-name">Zavier Scott</span><span class="tst-role">Chicago Bears</span></span></figcaption>
+        </figure>
+        <figure class="tst tstc-slide">
+          <span class="tst-tag">Family &amp; partner</span>
+          <blockquote class="tst-q"><p>&ldquo;Thank you so much for helping us with the camps! I&rsquo;m excited to have you in my life and to continue building Ja&rsquo;Marcus&rsquo; legacy!!&rdquo;</p></blockquote>
+          <figcaption class="tst-by"><span class="tst-av">TM</span><span><span class="tst-name">Tresa McMillian</span><span class="tst-role">Client Family</span></span></figcaption>
+        </figure>
+        <!-- POSITIONING CONFLICT: this quote calls Jamond an "Agent", which cuts against the
+             co-agent positioning stated in Services. Do not edit a real person's words. Either
+             ask Brandy for a revised quote or remove this card. Left as-is pending Jamond's call. -->
+        <figure class="tst tstc-slide">
+          <span class="tst-tag">Family &amp; partner</span>
+          <blockquote class="tst-q"><p>&ldquo;Jamond, appreciate you making sure we were straight going and coming. You are great at what you do and even see you being great as an Agent for sports athletes. Just my observation.&rdquo;</p></blockquote>
+          <figcaption class="tst-by"><span class="tst-av">BR</span><span><span class="tst-name">Brandy Rogers</span><span class="tst-role">Client Family</span></span></figcaption>
+        </figure>
+      </div></div>
+      <div class="tstc-nav">
+        <button class="tstc-btn" id="tstcPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="tstc-dots" id="tstcDots"></div>
+        <button class="tstc-btn" id="tstcNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ ATHLETES / GRAPHITE ============ -->
 <section id="athletes" class="sec band-cream pad-tight">
@@ -1097,9 +1111,36 @@
     <p class="team-lead rise">Athlete management, operations, and client development &mdash; the three roles that carry every relationship on the roster.</p>
 
     <ul class="tmini-row rise">
-      <li class="tmini"><span class="tmini-n">Jamond DuBose</span><span class="tmini-r">Founder &amp; Chief Executive Officer</span></li>
-      <li class="tmini"><span class="tmini-n">Taylor Wilson</span><span class="tmini-r">President of Athlete Management &amp; Operations</span></li>
-      <li class="tmini"><span class="tmini-n">Khalil Baker</span><span class="tmini-r">Director of Athlete Relations &amp; Development</span></li>
+      <li class="tmini">
+        <details class="tmini-d">
+          <summary class="tmini-sum">
+            <span class="tmini-av"><span class="tmini-ph" aria-hidden="true">JD</span><img src="images/founder/jamond-dubose-avatar.webp" alt="Jamond DuBose" width="56" height="56" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+            <span class="tmini-meta"><span class="tmini-n">Jamond DuBose</span><span class="tmini-r">Founder &amp; Chief Executive Officer</span></span>
+            <svg class="tmini-car" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="tmini-bio"><p>Founded True Path Management to give athletes the guidance he wished he&rsquo;d had during his own playing career. A former Division I football player who competed at three programs, earned starting roles at two, and was voted team captain, Jamond leads True Path&rsquo;s vision, strategy, and client representation.</p></div>
+        </details>
+      </li>
+      <li class="tmini">
+        <details class="tmini-d">
+          <summary class="tmini-sum">
+            <span class="tmini-av"><span class="tmini-ph" aria-hidden="true">TW</span><img src="images/team/taylorheadshot.webp" style="transform:scale(1.3);transform-origin:center 46%" alt="Taylor Wilson" width="56" height="56" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+            <span class="tmini-meta"><span class="tmini-n">Taylor Wilson</span><span class="tmini-r">President of Athlete Management &amp; Operations</span></span>
+            <svg class="tmini-car" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="tmini-bio"><p>A former Division I collegiate athlete, Taylor oversees athlete management, client strategy, operations, and relationship development across True Path&rsquo;s roster.</p></div>
+        </details>
+      </li>
+      <li class="tmini">
+        <details class="tmini-d">
+          <summary class="tmini-sum">
+            <span class="tmini-av"><span class="tmini-ph" aria-hidden="true">KB</span><img src="images/team/khalil-baker.webp" alt="Khalil Baker" width="56" height="56" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+            <span class="tmini-meta"><span class="tmini-n">Khalil Baker</span><span class="tmini-r">Director of Athlete Relations &amp; Development</span></span>
+            <svg class="tmini-car" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="tmini-bio"><p>A First-Team FCS All-American, HBCU National Champion, and inaugural Aeneas Williams Award winner, Khalil leads athlete relationships, mentorship, and development at True Path.</p></div>
+        </details>
+      </li>
     </ul>
 
     <a class="team-cta rise" href="/team">Meet the team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-7 7 7-7 7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
