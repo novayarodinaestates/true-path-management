@@ -1330,10 +1330,14 @@
   function tidyPath(p){return (p||"/").replace(/\/+$/,"")||"/"}
   function sectionEl(path){var id=PATH_SECTION[tidyPath(path)]; return id?$("#"+id):null}
 
-  /* Dead placeholder links (social accounts not set up yet) must not park a # */
+  /* Dead placeholder links (social accounts not set up yet) must not park a #.
+     Blurring after preventDefault also clears the focus-visible ring that
+     Chrome/Safari leave stuck on the box when a mouse click on a link never
+     results in navigation - otherwise that blue outline rides along with
+     the box as the page scrolls until something else takes focus. */
   document.addEventListener("click",function(e){
     var a=e.target.closest&&e.target.closest('a[href="#"]');
-    if(a) e.preventDefault();
+    if(a){ e.preventDefault(); a.blur(); }
   });
 
   if($("#home")){
