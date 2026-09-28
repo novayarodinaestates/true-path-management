@@ -581,24 +581,25 @@
     .cta-btn{width:100%}
   }
 
-  /* ---- partners, set in our own type (review #4) ---- */
-  .pt-lead{margin:20px 0 0;max-width:58ch;font-size:1.02rem;line-height:1.65;color:var(--slate)}
-  .ptnames{list-style:none;margin:34px 0 0;padding:0;
-    display:grid;grid-template-columns:repeat(6,1fr);gap:0}
-  .ptname{display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:var(--display);font-size:clamp(1.02rem,1.35vw,1.3rem);font-weight:500;line-height:1.22;
-    letter-spacing:-.015em;color:var(--pt-c,var(--ink));
-    padding:30px 22px;min-height:120px;
-    border-left:1px solid var(--line-light)}
-  .ptname:first-child{border-left:none}
-  .pt-t{display:block}
-  .pt-sub{color:var(--pt-c2,var(--slate))}
-  .ptname--more{grid-column:1/-1;border-left:none;min-height:0;padding:22px 22px 0;
-    border-top:1px solid var(--line-light)}
-  .ptname--more .pt-t{font-style:italic;color:var(--slate);letter-spacing:0;
-    font-size:clamp(1rem,1.25vw,1.2rem)}
-  .pt-note{margin:26px 0 0;font-size:.92rem;color:var(--slate)}
-  .pt-legal{margin:14px 0 0;max-width:76ch;font-size:.8rem;line-height:1.6;color:var(--slate-soft)}
+  /* ---- collaborations: logo grid ----
+     Identical tiles; each logo is contained in the same inset box so wide
+     wordmarks, round badges and the product shot all read as one set. */
+  .clb-grid{list-style:none;margin:38px auto 0;padding:0;max-width:var(--maxw);
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .clb-tile{position:relative;aspect-ratio:3/2;background:#fff;border:1px solid var(--line-light);
+    border-radius:2px;overflow:hidden}
+  .clb-logo{position:absolute;inset:18% 16%;display:block}
+  .clb-logo img{width:100%;height:100%;max-width:none;object-fit:contain;object-position:center}
+  @media (hover:hover){
+    .clb-tile{transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+    .clb-tile:hover{transform:translateY(-3px);border-color:var(--line-gray);
+      box-shadow:0 10px 24px -12px rgba(11,21,36,.22)}
+  }
+  @media (hover:hover) and (prefers-reduced-motion:reduce){
+    .clb-tile{transition:none}
+    .clb-tile:hover{transform:none}
+  }
+  .clb-legal{margin:26px 0 0;max-width:76ch;font-size:.8rem;line-height:1.6;color:var(--slate-soft)}
 
   /* ---- testimonial group tag (review #6) ---- */
   .tst-tag{display:inline-block;margin-bottom:14px;font-family:var(--sans);font-size:10px;
@@ -607,17 +608,12 @@
 
   @media (max-width:900px){
     .paths,.works{grid-template-columns:1fr;gap:16px}
-    .ptnames{grid-template-columns:repeat(2,1fr)}
-    .ptname{font-size:1.3rem;min-height:104px;padding:24px 18px}
-    .ptname:nth-child(odd){border-left:none}
-    .ptname:nth-child(n+3){border-top:1px solid var(--line-light)}
-    .ptname--more{padding:20px 18px 0}
+    .clb-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
   }
-  @media (max-width:420px){
-    .ptnames{grid-template-columns:1fr}
-    .ptname{font-size:1.35rem;min-height:0;padding:20px 12px;
-      border-left:none;border-top:1px solid var(--line-light)}
-    .ptname:first-child{border-top:none}
+  @media (max-width:560px){
+    .clb-grid{gap:12px}
+    .clb-tile{aspect-ratio:5/4}
+    .clb-logo{inset:17% 13%}
   }
   @media (max-width:560px){
     .hero-sub{font-size:.92rem}
@@ -695,6 +691,7 @@
     <a class="tab-link" href="/athletes">Athletes</a>
     <a class="tab-link" href="/work">The Work</a>
     <a class="tab-link" href="/testimonials">Testimonials</a>
+    <a class="tab-link" href="/collaborations">Collaborations</a>
     <a class="tab-link" href="/impact">Impact</a>
     <a class="tab-link tab-cta-m" href="/contact">Get in touch</a>
   </div>
@@ -1100,13 +1097,6 @@
   </div>
 </section>
 
-<!-- ============ PARTNERS / CREAM ============ -->
-<!-- Named in our own typography, no logo files. Brand names are used to describe real
-     past engagements (nominative use); no marks are reproduced.
-     Colours: Cane's #D11920 (PMS 485 C) and Jersey Mike's #134A7C are published brand
-     values. HOW Water aqua #0B7C8A and Bear's red #B3271E are chosen for legibility on
-     cream, not taken from a brand guide - confirm and replace when you have the real
-     values. Change --pt-c (and --pt-c2 for a second tone) on the relevant <li>. -->
 <section id="team" class="sec band-cream-deep">
   <div class="wrap">
     <p class="eyebrow rise">The team</p>
@@ -1150,25 +1140,28 @@
   </div>
 </section>
 
-<!-- ============ PARTNERS / CREAM ============ -->
-<section id="partners" class="sec band-cream">
+<!-- ============ COLLABORATIONS / CREAM ============ -->
+<!-- Logo grid. Each logo is a transparent .png with a .webp copy beside it in
+     images/collaborations/. Every tile is the same size; the logo is fitted
+     (object-fit: contain) inside the same fixed box, so none is stretched,
+     cropped, or larger than the rest. Order: Jersey Mike's, Raising Cane's,
+     HOW Water, Bear's Smokehouse, Believe Brand Co., Buffalo Brothers. -->
+<section id="collaborations" class="sec band-cream">
   <div class="wrap">
-    <p class="eyebrow rise">Partners</p>
-    <h2 class="sec-h rise">Brands our athletes have <span class="accent">partnered with</span></h2>
-    <p class="pt-lead rise">Our roster earns trust on the field. These are the companies that have trusted us off it.</p>
+    <p class="eyebrow rise">Collaborations</p>
+    <h2 class="sec-h rise">Businesses we&rsquo;ve worked with <span class="accent">in the past</span></h2>
+    <p class="lede rise">Our roster earns trust on the field. These are the companies that have trusted us off it.</p>
 
-    <ul class="ptnames rise">
-      <li class="ptname" style="--pt-c:#D11920"><span class="pt-t">Raising Cane&rsquo;s</span></li>
-      <li class="ptname" style="--pt-c:#134A7C"><span class="pt-t">Jersey Mike&rsquo;s</span></li>
-      <li class="ptname" style="--pt-c:#0B7C8A"><span class="pt-t">HOW Water</span></li>
-      <li class="ptname" style="--pt-c:#B3271E;--pt-c2:#5A6577"><span class="pt-t">Bear&rsquo;s <span class="pt-sub">Smokehouse BBQ</span></span></li>
-      <li class="ptname" style="--pt-c:#0B1524;--pt-c2:#5A6577"><span class="pt-t">Believe Co <span class="pt-sub">Clothing</span></span></li>
-      <li class="ptname" style="--pt-c:#8A6A45"><span class="pt-t">Buffalo Brothers</span></li>
-      <li class="ptname ptname--more"><span class="pt-t">and many more&hellip;</span></li>
+    <ul class="clb-grid rise">
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/jersey-mikes.webp"><img src="images/collaborations/jersey-mikes.png" alt="Jersey Mike&rsquo;s Subs" width="550" height="400" loading="lazy" decoding="async"></picture></li>
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/raising-canes.webp"><img src="images/collaborations/raising-canes.png" alt="Raising Cane&rsquo;s Chicken Fingers" width="600" height="290" loading="lazy" decoding="async"></picture></li>
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/how-water.webp"><img src="images/collaborations/how-water.png" alt="HOW Water" width="309" height="400" loading="lazy" decoding="async"></picture></li>
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/bears-smokehouse.webp"><img src="images/collaborations/bears-smokehouse.png" alt="Bear&rsquo;s Smokehouse BBQ" width="600" height="236" loading="lazy" decoding="async"></picture></li>
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/believe-brand-co.webp"><img src="images/collaborations/believe-brand-co.png" alt="Believe Brand Co." width="391" height="160" loading="lazy" decoding="async"></picture></li>
+      <li class="clb-tile"><picture class="clb-logo"><source type="image/webp" srcset="images/collaborations/buffalo-brothers.webp"><img src="images/collaborations/buffalo-brothers.png" alt="Buffalo Brothers Pizza &amp; Wing Co." width="400" height="400" loading="lazy" decoding="async"></picture></li>
     </ul>
 
-    <p class="pt-note rise">Additional brand and community partners available on request.</p>
-    <p class="pt-legal">Brand names are the property of their respective owners and are referenced here to describe past engagements. No endorsement or affiliation is implied.</p>
+    <p class="clb-legal">Logos and brand names are the property of their respective owners and are shown here to identify past engagements. No endorsement or affiliation is implied.</p>
   </div>
 </section>
 
@@ -1229,6 +1222,7 @@
         <li><a href="/services">Services</a></li>
         <li><a href="/impact">Impact</a></li>
         <li><a href="/testimonials">Testimonials</a></li>
+        <li><a href="/collaborations">Collaborations</a></li>
       </ul>
     </div>
     <div>
@@ -1327,7 +1321,8 @@
      Note /team is the standalone team page, so the on-page #team band
      deliberately has no path of its own. ---- */
   var SECTION_PATH={home:"/",services:"/services",athletes:"/athletes",work:"/work",
-                    testimonials:"/testimonials",impact:"/impact",gallery:"/gallery"};
+                    testimonials:"/testimonials",impact:"/impact",gallery:"/gallery",
+                    collaborations:"/collaborations"};
   var PATH_SECTION={};
   Object.keys(SECTION_PATH).forEach(function(id){PATH_SECTION[SECTION_PATH[id]]=id});
   function tidyPath(p){return (p||"/").replace(/\/+$/,"")||"/"}

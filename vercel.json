@@ -1,11 +1,15 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/partners", "destination": "/collaborations", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/services", "destination": "/" },
     { "source": "/athletes", "destination": "/" },
     { "source": "/work", "destination": "/" },
     { "source": "/testimonials", "destination": "/" },
     { "source": "/impact", "destination": "/" },
-    { "source": "/gallery", "destination": "/" }
+    { "source": "/gallery", "destination": "/" },
+    { "source": "/collaborations", "destination": "/" }
   ]
 }
