@@ -583,21 +583,6 @@
     .cta-btn{width:100%}
   }
 
-  /* ---- partners, set in our own type (review #4) ---- */
-  .pt-lead{margin:20px 0 0;max-width:58ch;font-size:1.02rem;line-height:1.65;color:var(--slate)}
-  .ptnames{list-style:none;margin:34px 0 0;padding:0;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-  .ptname{display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:var(--display);font-size:1.5rem;font-weight:500;line-height:1.22;
-    letter-spacing:-.015em;color:var(--pt-c,var(--ink));
-    padding:30px 22px;min-height:120px;
-    border-left:1px solid var(--line-light)}
-  .ptname:first-child{border-left:none}
-  .pt-t{display:block}
-  .pt-sub{color:var(--pt-c2,var(--slate))}
-  .pt-note{margin:26px 0 0;font-size:.86rem;color:var(--slate-soft)}
-  .pt-legal{margin:14px 0 0;max-width:76ch;font-size:.8rem;line-height:1.6;color:var(--slate-soft)}
-
   /* ---- testimonial group tag (review #6) ---- */
   .tst-tag{display:inline-block;margin-bottom:14px;font-family:var(--sans);font-size:10px;
     font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);
@@ -605,16 +590,6 @@
 
   @media (max-width:900px){
     .paths,.works{grid-template-columns:1fr;gap:16px}
-    .ptnames{grid-template-columns:repeat(2,1fr)}
-    .ptname{font-size:1.3rem;min-height:104px;padding:24px 18px}
-    .ptname:nth-child(odd){border-left:none}
-    .ptname:nth-child(n+3){border-top:1px solid var(--line-light)}
-  }
-  @media (max-width:420px){
-    .ptnames{grid-template-columns:1fr}
-    .ptname{font-size:1.35rem;min-height:0;padding:20px 12px;
-      border-left:none;border-top:1px solid var(--line-light)}
-    .ptname:first-child{border-top:none}
   }
   @media (max-width:560px){
     .hero-sub{font-size:.92rem}
@@ -729,6 +704,7 @@
     <a class="tab-link" href="/athletes">Athletes</a>
     <a class="tab-link" href="/work">The Work</a>
     <a class="tab-link" href="/testimonials">Testimonials</a>
+    <a class="tab-link" href="/collaborations">Collaborations</a>
     <a class="tab-link" href="/impact">Impact</a>
     <a class="tab-link tab-cta-m" href="/contact">Get in touch</a>
   </div>
@@ -905,6 +881,7 @@
         <li><a href="/services">Services</a></li>
         <li><a href="/impact">Impact</a></li>
         <li><a href="/testimonials">Testimonials</a></li>
+        <li><a href="/collaborations">Collaborations</a></li>
       </ul>
     </div>
     <div>

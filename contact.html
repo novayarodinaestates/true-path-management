@@ -180,6 +180,24 @@
     .gs-dots button,.tstc-dots button{box-sizing:content-box;padding:9px;background-clip:content-box}
     .gs-dots,.tstc-dots{gap:0}
   }
+  /* ---------- Nav: same collapse point as the homepage (1180px) ----------
+     Keeps the tab row identical on every page. Below 1180px the full row
+     of tabs no longer fits on one line, so the menu button takes over. */
+  .tab-link{white-space:nowrap}
+  @media (max-width:1180px){
+    .tabs-nav{position:fixed;inset:64px 0 auto;background:var(--navy);flex-direction:column;
+              align-items:stretch;gap:0;padding:8px 0 20px;border-bottom:1px solid var(--line-dark);
+              transform:translateY(-120%);transition:transform .4s var(--ease);z-index:79;
+              max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);
+              overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+    .tabs-nav.open{transform:none}
+    .tab-link{padding:15px clamp(20px,5vw,52px);border-bottom:1px solid var(--line-dark);
+              font-size:13px;white-space:normal}
+    .tab-link::after{display:none}
+    .tab-cta-m{display:block;color:var(--accent-light)}
+    .nav-toggle{display:flex;min-width:44px;min-height:44px;align-items:center;justify-content:center;padding:0}
+    .nav-cta,.nav-social{display:none}
+  }
 </style></head><body>
 
 <nav><div class="nav-in">
@@ -191,6 +209,7 @@
     <a class="tab-link" href="/athletes">Athletes</a>
     <a class="tab-link" href="/work">The Work</a>
     <a class="tab-link" href="/testimonials">Testimonials</a>
+    <a class="tab-link" href="/collaborations">Collaborations</a>
     <a class="tab-link" href="/impact">Impact</a>
     <a class="tab-link tab-cta-m active" href="/contact">Get in touch</a>
   </div>
@@ -301,6 +320,7 @@
         <li><a href="/athletes">Athletes</a></li>
         <li><a href="/services">Services</a></li>
         <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/collaborations">Collaborations</a></li>
       </ul>
     </div>
     <div>

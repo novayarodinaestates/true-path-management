@@ -12,8 +12,10 @@
    on the section - so hand it straight to the homepage, which scrolls to the
    right place on load. Keeps a shared link like /impact working either way. */
 (function(){
-  var SECTIONS=["services","athletes","work","testimonials","impact","gallery"];
+  var SECTIONS=["services","athletes","work","testimonials","impact","gallery","collaborations"];
+  var RENAMED={partners:"collaborations"};   /* old section paths -> current */
   var seg=location.pathname.replace(/^\/+|\/+$/g,"");
+  if(RENAMED[seg]) seg=RENAMED[seg];
   if(SECTIONS.indexOf(seg)>-1){
     sessionStorage.setItem("tpm:section",seg);
     location.replace("/");

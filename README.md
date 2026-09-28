@@ -24,41 +24,32 @@ Option B — Git: push this folder to a repo and import it in Vercel.
 There is no framework, so when Vercel asks, choose **Other** and leave the
 build command empty with the output directory set to the project root.
 
-## Partners section
+## Collaborations section
 
-Partner brands are named in the site's own typography — no logo files, nothing to
-source or license. Each name is one `<li class="ptname">` in the `#partners`
-section of `index.html`, tinted by an inline custom property:
+Logo grid in the `#collaborations` section of `index.html` (reachable at
+`/collaborations`; the old `/partners` URL redirects there via `vercel.json`).
+
+Logos live in `images/collaborations/` as transparent `.png` files, each with a
+`.webp` copy beside it. Every logo is one `<li class="clb-tile">`:
 
 ```html
-<li class="ptname" style="--pt-c:#D11920">Raising Cane's</li>
+<li class="clb-tile"><picture class="clb-logo">
+  <source type="image/webp" srcset="images/collaborations/NAME.webp">
+  <img src="images/collaborations/NAME.png" alt="Business name"
+       width="PNG_WIDTH" height="PNG_HEIGHT" loading="lazy" decoding="async">
+</picture></li>
 ```
 
-Colors in use:
+To add one: export a transparent PNG (at least ~600px on the long edge so it stays
+crisp on retina screens), make a WebP copy that keeps transparency (squoosh.app,
+or `cwebp -q 90 -alpha_q 100 NAME.png -o NAME.webp`), and add an `<li>` like the
+one above with the PNG's real pixel width and height. Every tile is the same size
+and each logo is fitted inside the same box, so any shape lines up.
 
-| Brand | Value | Source |
-| --- | --- | --- |
-| Raising Cane's | `#D11920` | Published (Pantone 485 C) |
-| Jersey Mike's | `#134A7C` | Published |
-| HOW Water | `#0B7C8A` aqua | Chosen for legibility, not from a brand guide |
-| Bear's | `#B3271E` red | Chosen for legibility, not from a brand guide |
-| Smokehouse BBQ | `#5A6577` grey | Second tone, set via `--pt-c2` |
+The grid is 3 across on desktop and 2 across on tablets and phones, so keep the
+count even (6, 8, …) or the last row will be short.
 
-A name can carry two colors by wrapping part of it in `<span class="pt-sub">`,
-which picks up `--pt-c2`.
-
-Every name sits inside a single `<span class="pt-t">` so multi-word names wrap as
-text. Remove that wrapper and the tile's flex layout splits the words into
-separate columns instead of wrapping them.
-
-All values clear 4.4:1 contrast against the cream background.
-
-To add or remove a partner, add or delete an `<li>`. The row is a 4-up grid on
-desktop, 2-up on tablet, stacked on phones, so any count reflows on its own.
-
-Keep the `.pt-legal` disclaimer in place, and describe the relationship
-accurately — "brands our athletes have partnered with" is a different claim from
-"our partners."
+Keep the `.clb-legal` disclaimer in place.
 
 ## Adding photos
 
